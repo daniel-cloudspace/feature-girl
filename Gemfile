@@ -26,3 +26,4 @@ gem "random_data"
 gem "faker"
 gem "rdoc"
 
+gem "acts-as-taggable-on"
