@@ -34,7 +34,6 @@ Feature: Manage features
   # of the tags above is to modify your views to use <button> instead. You can
   # see how in http://github.com/jnicklas/capybara/issues#issue/12
   #
-  @wip
   Scenario: Delete feature
     Given the following features:
       |title|description|
@@ -42,7 +41,8 @@ Feature: Manage features
       |title 2|description 2|
       |title 3|description 3|
       |title 4|description 4|
-    When I press "Destroy"
+    When I go to the features page
+    And I press "Destroy"
     Then I should see "title 2"
     Then I should see "title 3"
     Then I should see "title 4"
