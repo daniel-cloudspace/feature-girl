@@ -12,6 +12,12 @@
     .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px;" }
       = tag.name
 
+
+
+.link_bar
+  = link_to 'New Scenario', new_scenario_path
+  = link_to 'Randomly Arrange Items', "#", :id => 'randomize'
+
   
 -#%ul.features
   %li= link_to 'Show', scenario
@@ -36,32 +42,45 @@
   function update_canvas() {
     canvas.width = canvas.width;
     #{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect('#scenario_" + scenario.id.to_s + "', '#tag_" + tag.id.to_s + "');" } } }
-    console.log("I tried");
   }
+
+  function randomize() { 
+    $('.scenario_object, .tag_object').each(function() { 
+      $(this).css('left', Math.random()*1024); $(this).css('top', Math.random()*768); 
+      save_position($(this));
+    });
+    update_canvas();
+    return false;
+  }
+  
+  function save_position(element) {
+    var url = '', post_data = '', type = '', id = ''
+
+    // determine which type of element we are dragging
+    type = element.attr('class').match(/([^ ]+)_object/)[1];
+
+    id = element.attr('id').replace(type+'_', '');
+      
+    url = '/' + type + 's/' + id + '.json';
+    post_data = "_method=put" +
+                "&" + type + "[left]=" + element.offset().left +
+                "&" + type + "[top]=" + element.offset().top;
+
+    $.post(url, post_data, function(d,t){
+      window.r = d;console.log(d);
+      update_canvas();
+    });
+  }
+
+  $('#randomize').click(randomize);
 
   $('.scenario_object, .tag_object').draggable({
     drag: function(e,ui) { update_canvas(); },
     stop: function(e, ui) { 
-      var type = '', id = '', url = '', post_data = '';
-
-      // determine which type of element we are dragging
-      type = ui.helper.attr('class').match(/([^ ]+)_object/)[1]
-
-      id = ui.helper.attr('id').replace(type+'_', '');
-
-      url = '/' + type + 's/' + id + '.json';
-      post_data = "_method=put" +
-                  "&" + type + "[left]=" + ui.offset.left +
-                  "&" + type + "[top]=" + ui.offset.top;
-
-      $.post(url, post_data, function(d,t){
-        window.r = d;console.log(d);
-        update_canvas();
-      });
-    }
+      save_position(ui.helper);
+   }
   });
 
 
 
 
-= link_to 'New Scenario', new_scenario_path

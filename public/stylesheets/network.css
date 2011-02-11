@@ -7,4 +7,5 @@
 .tags { }
 .tag_object { display:inline-block; position:absolute; background:white;border: 1px solid; padding: 5px; margin: 5px; }
 
-#canvas { position:absolute; display:inline-block; top:0; left:0; }
+#canvas { position:absolute; display:inline-block; top:20px; left:0; }
+

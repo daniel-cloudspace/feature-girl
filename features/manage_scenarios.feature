@@ -1,3 +1,4 @@
+@scenarios
 Feature: Manage scenarios
   In order to [goal]
   [stakeholder]

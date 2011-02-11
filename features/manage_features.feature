@@ -1,3 +1,4 @@
+@features
 Feature: Manage features
   In order to [goal]
   [stakeholder]
