@@ -43,8 +43,6 @@ Feature: Manage features
       |title 3|description 3|
       |title 4|description 4|
     When I delete the 3rd feature
-    Then I should see the following features:
-      |Title|Description|
-      |title 1|description 1|
-      |title 2|description 2|
-      |title 4|description 4|
+    Then I should see "title 1"
+    Then I should see "title 2"
+    Then I should see "title 4"

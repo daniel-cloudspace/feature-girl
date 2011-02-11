@@ -43,8 +43,6 @@ Feature: Manage scenarios
       |title 3|steps 3|
       |title 4|steps 4|
     When I delete the 3rd scenario
-    Then I should see the following scenarios:
-      |Title|Steps|
-      |title 1|steps 1|
-      |title 2|steps 2|
-      |title 4|steps 4|
+    Then I should see "title 1"
+    Then I should see "title 2"
+    Then I should see "title 4"
