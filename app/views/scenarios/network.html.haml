@@ -1,25 +1,24 @@
-%h1 Listing scenarios
+= stylesheet_link_tag 'network'
 
-%table
-  %tr
-    %th Title
-    %th Steps
-    %th Tags
-    %th Feature
-    %th
-    %th
-    %th
-
+.scenarios
   - @scenarios.each do |scenario|
-    %tr
-      %td= scenario.title
-      %td= scenario.steps
-      %td= scenario.tag_list
-      %td= scenario.feature.title if !scenario.feature.nil?
-      %td= link_to 'Show', scenario
-      %td= link_to 'Edit', edit_scenario_path(scenario)
-      %td= button_to 'Destroy', scenario_path(scenario),  :confirm => 'Are you sure?', :method => :delete
+    .scenario{ :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
+      = scenario.title
+.tags
+  - @scenarios.collect{|s| s.tags}.flatten.each do |tag|
+    .tag{ :style => "left: #{tag.left}px; top: #{tag.top}px;" }
+      = tag.name
+  
+-#%ul.features
+  %li= link_to 'Show', scenario
+  %li= link_to 'Edit', edit_scenario_path(scenario)
+  %li= button_to 'Destroy', scenario_path(scenario),  :confirm => 'Are you sure?', :method => :delete
 
-%br
+:javascript 
+  $('.scenario, .tag').draggable({
+    stop: function(e, ui) { 
+      //$.post("/
+    }
+  });
 
 = link_to 'New Scenario', new_scenario_path

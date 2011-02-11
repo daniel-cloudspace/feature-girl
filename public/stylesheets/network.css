@@ -1,0 +1,8 @@
+/* Scenarios--Tags network page at /network => scenarios#network */
+
+/* draggable boxes */
+.scenarios { }
+.scenario { display:inline-block; position:absolute; border: 1px solid; padding: 5px; margin: 5px; }
+
+.tags { }
+.tag { display:inline-block; position:absolute; border: 1px solid; padding: 5px; margin: 5px; }

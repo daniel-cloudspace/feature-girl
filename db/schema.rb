@@ -10,13 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110211153610) do
+ActiveRecord::Schema.define(:version => 20110211175939) do
 
   create_table "features", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "left",        :default => 0
+    t.integer  "top",         :default => 0
   end
 
   create_table "scenarios", :force => true do |t|
@@ -25,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20110211153610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "feature_id"
+    t.integer  "left",       :default => 0
+    t.integer  "top",        :default => 0
   end
 
   create_table "taggings", :force => true do |t|
@@ -41,7 +45,9 @@ ActiveRecord::Schema.define(:version => 20110211153610) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "left", :default => 0
+    t.integer "top",  :default => 0
   end
 
 end
