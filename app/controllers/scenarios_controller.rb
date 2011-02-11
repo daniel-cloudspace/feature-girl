@@ -64,9 +64,11 @@ class ScenariosController < ApplicationController
       if @scenario.update_attributes(params[:scenario])
         format.html { redirect_to(@scenario, :notice => 'Scenario was successfully updated.') }
         format.xml  { head :ok }
+        format.json { render :json => { :success => true } }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @scenario.errors, :status => :unprocessable_entity }
+        format.json { render :json => { :success => false } }
       end
     end
   end

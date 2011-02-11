@@ -1,13 +1,17 @@
 = stylesheet_link_tag 'network'
 
+:plain 
+  <canvas id="canvas"></canvas>
+
 .scenarios
   - @scenarios.each do |scenario|
-    .scenario{ :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
+    .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
       = scenario.title
 .tags
-  - @scenarios.collect{|s| s.tags}.flatten.each do |tag|
-    .tag{ :style => "left: #{tag.left}px; top: #{tag.top}px;" }
+  - @scenarios.collect{|s| s.tags}.flatten.uniq.each do |tag|
+    .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px;" }
       = tag.name
+
   
 -#%ul.features
   %li= link_to 'Show', scenario
@@ -15,10 +19,27 @@
   %li= button_to 'Destroy', scenario_path(scenario),  :confirm => 'Are you sure?', :method => :delete
 
 :javascript 
-  $('.scenario, .tag').draggable({
+  $('.scenario_object, .tag_object').draggable({
     stop: function(e, ui) { 
-      //$.post("/
+      var type = '', id = '', url = '', post_data = '';
+
+      // determine which type of element we are dragging
+      type = ui.helper.attr('class').match(/([^ ]+)_object/)[1]
+
+      id = ui.helper.attr('id').replace(type+'_', '');
+
+      url = '/' + type + 's/' + id + '.json';
+      post_data = "_method=put" +
+                  "&" + type + "[left]=" + ui.offset.left +
+                  "&" + type + "[top]=" + ui.offset.top;
+
+      $.post(url, post_data, function(d,t){
+        window.r = d;console.log(d);
+      });
     }
   });
+
+
+
 
 = link_to 'New Scenario', new_scenario_path
