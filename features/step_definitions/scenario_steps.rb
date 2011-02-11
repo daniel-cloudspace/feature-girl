@@ -12,3 +12,8 @@ end
 Then /^I should see the following scenarios:$/ do |expected_scenarios_table|
   expected_scenarios_table.diff!(tableish('table tr', 'td,th'))
 end
+
+Then /^I should see that scenario listed$/ do
+  @scenario = Scenario.last
+  page.should have_content(@scenario.title)
+end
