@@ -4,4 +4,6 @@ FeatureGirl::Application.routes.draw do
 
   resources :features
   resources :scenarios
+
+  match 'network' => 'scenarios#network', :as => 'network'
 end

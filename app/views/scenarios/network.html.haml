@@ -1,0 +1,25 @@
+%h1 Listing scenarios
+
+%table
+  %tr
+    %th Title
+    %th Steps
+    %th Tags
+    %th Feature
+    %th
+    %th
+    %th
+
+  - @scenarios.each do |scenario|
+    %tr
+      %td= scenario.title
+      %td= scenario.steps
+      %td= scenario.tag_list
+      %td= scenario.feature.title if !scenario.feature.nil?
+      %td= link_to 'Show', scenario
+      %td= link_to 'Edit', edit_scenario_path(scenario)
+      %td= button_to 'Destroy', scenario_path(scenario),  :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Scenario', new_scenario_path
