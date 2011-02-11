@@ -1,7 +1,7 @@
 = stylesheet_link_tag 'network'
 
 :plain 
-  <canvas id="canvas"></canvas>
+  <canvas id="canvas" width="1600px" height="1400px"></canvas>
 
 .scenarios
   - @scenarios.each do |scenario|
@@ -19,7 +19,28 @@
   %li= button_to 'Destroy', scenario_path(scenario),  :confirm => 'Are you sure?', :method => :delete
 
 :javascript 
+  var canvas = $('#canvas')[0]
+  var ctx = canvas.getContext('2d');
+
+  function connect(scen, tag) { 
+    scen = $(scen);
+    tag = $(tag);
+    ctx.beginPath();
+    ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
+    ctx.lineTo(tag.offset().left + tag.width()/2, tag.offset().top + tag.height()/2);
+    ctx.stroke();
+  }
+
+  #{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect('#scenario_" + scenario.id.to_s + "', '#tag_" + tag.id.to_s + "');" } } }
+
+  function update_canvas() {
+    canvas.width = canvas.width;
+    #{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect('#scenario_" + scenario.id.to_s + "', '#tag_" + tag.id.to_s + "');" } } }
+    console.log("I tried");
+  }
+
   $('.scenario_object, .tag_object').draggable({
+    drag: function(e,ui) { update_canvas(); },
     stop: function(e, ui) { 
       var type = '', id = '', url = '', post_data = '';
 
@@ -35,6 +56,7 @@
 
       $.post(url, post_data, function(d,t){
         window.r = d;console.log(d);
+        update_canvas();
       });
     }
   });
