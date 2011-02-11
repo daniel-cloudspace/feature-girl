@@ -33,7 +33,7 @@ end
 
 Scenario.blueprint do
   title Sham.scenario_title
-  definition Sham.scenario_text
+  steps Sham.scenario_text
   feature { Feature.make }
   tags { [ActsAsTaggableOn::Tag.make] }
 end

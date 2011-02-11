@@ -1,15 +1,23 @@
-%h1 features
+%h1 Listing features
 
 %table
   %tr
     %th Title
-    %th View 
-  - if @features.length > 0
-    - @features.each do |feature|
-      %tr
-        %td= feature.title
-        %td= link_to "view", scenarios_path(feature)
-  - else
+    %th Description
+    %th Tags
+    %th
+    %th
+    %th
+
+  - @features.each do |feature|
     %tr
-      %td
-        No features found
+      %td= feature.title
+      %td= feature.description
+      %td= feature.tag_list
+      %td= link_to 'Show', feature
+      %td= link_to 'Edit', edit_feature_path(feature)
+      %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Feature', new_feature_path

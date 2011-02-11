@@ -1,0 +1,17 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @scenario.title
+%p
+  %b Steps:
+  = @scenario.steps
+%p
+  %b Tags
+  - @scenario.tag_list.each do |tag|
+    = link_to tag, '#'
+    ,
+
+= link_to 'Edit', edit_scenario_path(@scenario)
+\|
+= link_to 'Back', scenarios_path

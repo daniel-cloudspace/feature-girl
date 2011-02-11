@@ -14,17 +14,17 @@ ActiveRecord::Schema.define(:version => 20110211153610) do
 
   create_table "features", :force => true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "scenarios", :force => true do |t|
     t.string   "title"
-    t.string   "definition"
-    t.integer  "feature_id"
+    t.text     "steps"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "feature_id"
   end
 
   create_table "taggings", :force => true do |t|

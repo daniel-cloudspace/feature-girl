@@ -1,6 +1,5 @@
 class Feature < ActiveRecord::Base
   has_many :scenarios
 
-  validates_presence_of :title
-
+  acts_as_taggable_on :tags
 end

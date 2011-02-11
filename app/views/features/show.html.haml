@@ -1,0 +1,16 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @feature.title
+%p
+  %b Description:
+  = @feature.description
+%p
+  %b Tags:
+  - @feature.tags.each do |tag|
+    = link_to tag, "#"
+
+= link_to 'Edit', edit_feature_path(@feature)
+\|
+= link_to 'Back', features_path
