@@ -16,7 +16,7 @@
       %td= feature.tag_list
       %td= link_to 'Show', feature
       %td= link_to 'Edit', edit_feature_path(feature)
-      %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
+      %td= button_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

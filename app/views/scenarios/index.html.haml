@@ -18,7 +18,7 @@
       %td= scenario.feature.title if !scenario.feature.nil?
       %td= link_to 'Show', scenario
       %td= link_to 'Edit', edit_scenario_path(scenario)
-      %td= link_to 'Destroy', scenario, :confirm => 'Are you sure?', :method => :delete
+      %td= button_to 'Destroy', scenario_path(scenario),  :confirm => 'Are you sure?', :method => :delete
 
 %br
 
