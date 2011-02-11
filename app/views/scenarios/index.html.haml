@@ -12,6 +12,8 @@
     %tr
       %td= scenario.title
       %td= scenario.steps
+      %td= scenario.tag_list
+      %td= scenario.feature.title
       %td= link_to 'Show', scenario
       %td= link_to 'Edit', edit_scenario_path(scenario)
       %td= link_to 'Destroy', scenario, :confirm => 'Are you sure?', :method => :delete

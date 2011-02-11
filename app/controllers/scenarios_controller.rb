@@ -25,6 +25,7 @@ class ScenariosController < ApplicationController
   # GET /scenarios/new.xml
   def new
     @scenario = Scenario.new
+    @features = Feature.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class ScenariosController < ApplicationController
   # GET /scenarios/1/edit
   def edit
     @scenario = Scenario.find(params[:id])
+    @features = Feature.all
   end
 
   # POST /scenarios

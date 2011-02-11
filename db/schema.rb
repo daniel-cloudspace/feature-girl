@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110211020147) do
+ActiveRecord::Schema.define(:version => 20110211073527) do
 
   create_table "features", :force => true do |t|
     t.string   "title"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110211020147) do
     t.text     "steps"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "feature_id"
   end
 
   create_table "taggings", :force => true do |t|
