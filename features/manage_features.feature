@@ -34,6 +34,7 @@ Feature: Manage features
   # of the tags above is to modify your views to use <button> instead. You can
   # see how in http://github.com/jnicklas/capybara/issues#issue/12
   #
+  @wip
   Scenario: Delete feature
     Given the following features:
       |title|description|
