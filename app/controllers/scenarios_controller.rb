@@ -82,4 +82,10 @@ class ScenariosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  # GET /network
+  # get a jquery-draggable network of scenarios and tags
+  def network
+    @scenarios = Scenario.all(:include => :tags)
+  end
 end
