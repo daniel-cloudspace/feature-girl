@@ -1,0 +1,15 @@
+%h1 scenarios
+
+%table
+  %tr
+    %th Title
+    %th Description
+  - if @scenarios.length > 0
+    - @scenarios.each do |scenario|
+      %tr
+        %td= scenario.title
+        %td= scenario.description
+  - else
+    %tr
+      %td
+        No scenarios found

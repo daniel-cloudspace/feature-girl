@@ -1,0 +1,15 @@
+%h1 features
+
+%table
+  %tr
+    %th Title
+    %th View 
+  - if @features.length > 0
+    - @features.each do |feature|
+      %tr
+        %td= feature.title
+        %td= link_to "view", scenarios_path(feature)
+  - else
+    %tr
+      %td
+        No features found
