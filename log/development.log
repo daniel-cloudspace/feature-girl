@@ -1186,3 +1186,153 @@ Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middle
   [1m[35mSQL (8.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
   [1m[36mSQL (50.5ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
   [1m[35mSQL (11.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (1.8ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  ROLLBACK
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+Migrating to CreateFeatures (20110210232647)
+Migrating to CreateScenarios (20110210232952)
+Migrating to CreateTags (20110210233207)
+Migrating to ActsAsTaggableOnMigration (20110211153610)
+  [1m[35mSQL (86.5ms)[0m  DROP TABLE `tags`
+  [1m[36mSQL (17.6ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35mSQL (18.4ms)[0m  CREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `tagger_id` int(11), `tagger_type` varchar(255), `context` varchar(255), `created_at` datetime) ENGINE=InnoDB
+  [1m[36mSQL (0.9ms)[0m  [1mSHOW KEYS FROM `taggings`[0m
+  [1m[35mSQL (63.3ms)[0m  CREATE INDEX `index_taggings_on_tag_id` ON `taggings` (`tag_id`)
+  [1m[36mSQL (0.6ms)[0m  [1mSHOW KEYS FROM `taggings`[0m
+  [1m[35mSQL (64.3ms)[0m  CREATE INDEX `index_taggings_on_taggable_id_and_taggable_type_and_context` ON `taggings` (`taggable_id`, `taggable_type`, `context`)
+  [1m[36mSQL (61.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110211153610')[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.5ms)[0m  [1mdescribe `features`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `features`
+  [1m[36mSQL (0.5ms)[0m  [1mdescribe `scenarios`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `scenarios`
+  [1m[36mSQL (0.6ms)[0m  [1mdescribe `taggings`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW KEYS FROM `taggings`
+  [1m[36mSQL (0.8ms)[0m  [1mdescribe `tags`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW KEYS FROM `tags`
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  ROLLBACK
+  [1m[36mSQL (0.9ms)[0m  [1mSELECT COUNT(*) FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = NULL) AND (`taggings`.taggable_type = 'Scenario') AND ((taggings.tagger_id IS NULL AND taggings.context = 'tags')))[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  describe `features`
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO `features` (`description`, `updated_at`, `title`, `created_at`) VALUES ('In order to He\'s going everywhere, B.J. McKay and his best friend Bear. Hong Kong Phooey number one super guy, Hong Kong Phooey quicker than the human eye. He\'s got style, a groovy style, and a car that just won\'t stop. Who says you have to call just one place home?. \n\n I want to be able to Off to New Orleans or who knows where. \n\n', '2011-02-11 15:47:25', 'Feature 1', '2011-02-11 15:47:25')[0m
+  [1m[35mSQL (85.1ms)[0m  COMMIT
+  [1m[36mFeature Load (0.7ms)[0m  [1mSELECT `features`.* FROM `features` WHERE `features`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = NULL) AND (`taggings`.taggable_type = 'Scenario') AND ((taggings.tagger_id IS NULL AND taggings.context = 'tags')))
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  describe `tags`
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO `tags` (`name`) VALUES ('@tag_1')[0m
+  [1m[35mSQL (19.8ms)[0m  COMMIT
+  [1m[36mTag Load (0.5ms)[0m  [1mSELECT `tags`.* FROM `tags` WHERE `tags`.`id` = 1 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  BEGIN
+  [1m[36mAREL (0.2ms)[0m  [1mINSERT INTO `tags` (`name`) VALUES ('@tag_2')[0m
+  [1m[35mSQL (6.4ms)[0m  COMMIT
+  [1m[36mTag Load (0.5ms)[0m  [1mSELECT `tags`.* FROM `tags` WHERE `tags`.`id` = 2 LIMIT 1[0m
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (2.0ms)[0m  SHOW TABLES
+  [1m[36mSQL (1.0ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.8ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  ROLLBACK
+  [1m[36mSQL (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.9ms)[0m  [1mdescribe `features`[0m
+  [1m[35mAREL (0.9ms)[0m  INSERT INTO `features` (`updated_at`, `created_at`, `description`, `title`) VALUES ('2011-02-11 15:52:54', '2011-02-11 15:52:54', 'In order to He\'s going everywhere, B.J. McKay and his best friend Bear. Hong Kong Phooey number one super guy, Hong Kong Phooey quicker than the human eye. He\'s got style, a groovy style, and a car that just won\'t stop. Who says you have to call just one place home?. \n\n I want to be able to Off to New Orleans or who knows where. \n\n', 'Feature 1')
+  [1m[36mSQL (109.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mFeature Load (0.4ms)[0m  SELECT `features`.* FROM `features` WHERE `features`.`id` = 2 LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO `features` (`updated_at`, `created_at`, `description`, `title`) VALUES ('2011-02-11 15:52:59', '2011-02-11 15:52:59', 'In order to He\'s going everywhere, B.J. McKay and his best friend Bear. Maybe tomorrow I\'ll want to settle down - until tomorrow I\'ll just keep moving on. \n\n I want to be able to Every stop I make I make a new friend; Can\'t stay for long just turn around and I\'m gone again. Ulysses, fighting evil and tyranny with all his power and with all of his might. Always fighting all the evil forces bringing peace and justice to all. Down the road that\'s where I\'ll always be. Ulysses, fighting evil and tyranny with all his power and with all of his might. \n\n', 'Feature 2')
+  [1m[36mSQL (108.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mFeature Load (0.4ms)[0m  SELECT `features`.* FROM `features` WHERE `features`.`id` = 3 LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = NULL) AND (`taggings`.taggable_type = 'Scenario') AND ((taggings.tagger_id IS NULL AND taggings.context = 'tags')))[0m
+  [1m[35mSQL (0.5ms)[0m  BEGIN
+  [1m[36mAREL (0.8ms)[0m  [1mINSERT INTO `features` (`updated_at`, `created_at`, `description`, `title`) VALUES ('2011-02-11 15:53:27', '2011-02-11 15:53:27', 'In order to Who says you have to call just one place home?. Hey there where ya goin, not exactly knowin\'. Every day is better than the last, with new dreams and better scenes and best of all I don\'t pay property tax. Ulysses, fighting evil and tyranny with all his power and with all of his might. There\'s a voice that keeps on calling me. \n\n I want to be able to Soaring through all the galaxies in search of Earth flying in to the night. Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n\n', 'Feature 3')[0m
+  [1m[35mSQL (10.3ms)[0m  COMMIT
+  [1m[36mFeature Load (0.6ms)[0m  [1mSELECT `features`.* FROM `features` WHERE `features`.`id` = 4 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = NULL) AND (`taggings`.taggable_type = 'Scenario') AND ((taggings.tagger_id IS NULL AND taggings.context = 'tags')))
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.5ms)[0m  describe `features`
+  [1m[36mAREL (0.4ms)[0m  [1mINSERT INTO `features` (`created_at`, `updated_at`, `title`, `description`) VALUES ('2011-02-11 15:53:46', '2011-02-11 15:53:46', 'Feature 1', 'In order to He\'s going everywhere, B.J. McKay and his best friend Bear. Hong Kong Phooey number one super guy, Hong Kong Phooey quicker than the human eye. He\'s got style, a groovy style, and a car that just won\'t stop. Who says you have to call just one place home?. \n\n I want to be able to Off to New Orleans or who knows where. \n\n')[0m
+  [1m[35mSQL (14.8ms)[0m  COMMIT
+  [1m[36mFeature Load (0.5ms)[0m  [1mSELECT `features`.* FROM `features` WHERE `features`.`id` = 5 LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = NULL) AND (`taggings`.taggable_type = 'Scenario') AND ((taggings.tagger_id IS NULL AND taggings.context = 'tags')))
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.7ms)[0m  describe `features`
+  [1m[36mAREL (0.5ms)[0m  [1mINSERT INTO `features` (`created_at`, `description`, `updated_at`, `title`) VALUES ('2011-02-11 15:55:32', 'In order to He\'s going everywhere, B.J. McKay and his best friend Bear. Hong Kong Phooey number one super guy, Hong Kong Phooey quicker than the human eye. He\'s got style, a groovy style, and a car that just won\'t stop. Who says you have to call just one place home?. \n\n I want to be able to Off to New Orleans or who knows where. \n\n', '2011-02-11 15:55:32', 'Feature 1')[0m
+  [1m[35mSQL (145.9ms)[0m  COMMIT
+  [1m[36mFeature Load (0.5ms)[0m  [1mSELECT `features`.* FROM `features` WHERE `features`.`id` = 6 LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  SELECT COUNT(*) FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_id = NULL) AND (`taggings`.taggable_type = 'Scenario') AND ((taggings.tagger_id IS NULL AND taggings.context = 'tags')))
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mActsAsTaggableOn::Tag Load (0.7ms)[0m  SELECT `tags`.`id` FROM `tags` WHERE (`tags`.`name` = BINARY '@tag_1') LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (121.8ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (49.3ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (22.4ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (23.8ms)[0m  [1mCREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `tagger_id` int(11), `tagger_type` varchar(255), `context` varchar(255), `created_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW KEYS FROM `taggings`
+  [1m[36mSQL (47.3ms)[0m  [1mCREATE INDEX `index_taggings_on_tag_id` ON `taggings` (`tag_id`)[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW KEYS FROM `taggings`
+  [1m[36mSQL (117.7ms)[0m  [1mCREATE INDEX `index_taggings_on_taggable_id_and_taggable_type_and_context` ON `taggings` (`taggable_id`, `taggable_type`, `context`)[0m
+  [1m[35mSQL (0.0ms)[0m  SHOW TABLES
+  [1m[36mSQL (19.0ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (17.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (41.1ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (8.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110211153610')
+  [1m[36mSQL (6.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (3.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (6.4ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210233207')[0m
