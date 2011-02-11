@@ -1,0 +1,17 @@
+---
+- title: First Test Scenario
+  steps: In order to test the System \n When I add seed sscenarios \n Then I should see the first scenario
+  feature: First Test Feature
+  tags: tag_1, tag_2, tag_3
+- title: Second Test Scenario
+  steps: In order to test the System \n When I add seed sscenarios \n Then I should see the second scenario
+  feature: First Test Feature
+  tags: tag_1, tag_2, tag_3
+- title: Third Test Scenario
+  steps: In order to test the System \n When I add seed sscenarios \n Then I should see the third scenario
+  feature: Second Test Feature
+  tags: tag_3
+- title: Fourth Test Scenario
+  steps: In order to test the System \n When I add seed sscenarios \n Then I should see the fourth scenario
+  feature: Second Test Feature
+  tags: tag_4

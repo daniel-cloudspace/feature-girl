@@ -10,13 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110211153610) do
+ActiveRecord::Schema.define(:version => 20110211172646) do
 
   create_table "features", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "x"
+    t.integer  "y"
   end
 
   create_table "scenarios", :force => true do |t|
@@ -25,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20110211153610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "feature_id"
+    t.integer  "x"
+    t.integer  "y"
   end
 
   create_table "taggings", :force => true do |t|
