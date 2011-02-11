@@ -1,7 +1,9 @@
+@feature
 Feature: Manage features
   In order to manage features
   I need to do things
 
+  @sexy @wip
   Scenario: Listing features
     Given a feature exists
     When I go to the features page
@@ -11,4 +13,3 @@ Feature: Manage features
     Given a scenario exists
     When I go to that scenario's page
     Then I should see that scenario listed
-
