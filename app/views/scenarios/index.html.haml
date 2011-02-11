@@ -1,0 +1,21 @@
+%h1 Listing scenarios
+
+%table
+  %tr
+    %th Title
+    %th Steps
+    %th
+    %th
+    %th
+
+  - @scenarios.each do |scenario|
+    %tr
+      %td= scenario.title
+      %td= scenario.steps
+      %td= link_to 'Show', scenario
+      %td= link_to 'Edit', edit_scenario_path(scenario)
+      %td= link_to 'Destroy', scenario, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Scenario', new_scenario_path

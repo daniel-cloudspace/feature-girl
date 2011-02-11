@@ -1,0 +1,19 @@
+= form_for @scenario do |f|
+  -if @scenario.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@scenario.errors.count, "error")} prohibited this scenario from being saved:"
+      %ul
+        - @scenario.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :steps
+    = f.text_area :steps
+  .field
+    = f.label :tag_list
+    = f.text_area :tag_list
+  .actions
+    = f.submit 'Save'
