@@ -866,3 +866,323 @@ ActionController::RoutingError (No route matches "/javascripts/jquery.js"):
   
 
 Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+  [1m[36mSQL (0.9ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (1.0ms)[0m  SHOW TABLES
+  [1m[36mSQL (13.9ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (151.9ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (63.4ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (22.2ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (47.7ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (19.3ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (37.6ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (8.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (9.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (12.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (115.9ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (43.3ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (33.3ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (20.7ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (26.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (31.1ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (65.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (8.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (6.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (91.3ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (43.9ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (19.3ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (20.8ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (67.7ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (157.2ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (9.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (3.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (9.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (54.2ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (59.0ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (21.1ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (18.6ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (21.9ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (42.7ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (7.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (58.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (6.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (100.6ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (60.5ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (23.1ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (17.1ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (18.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.8ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (63.3ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (7.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (2.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (6.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (115.8ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (58.4ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (22.9ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (19.2ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (21.5ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (63.1ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (9.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (7.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (7.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (115.0ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (41.7ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (17.8ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (19.4ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (18.0ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (74.2ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (6.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (3.8ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (5.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (290.3ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (76.4ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (258.1ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (210.8ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (68.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (418.3ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (27.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (17.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (37.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.8ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (66.8ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (58.2ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (30.4ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (19.2ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (63.9ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (30.3ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (7.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (8.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (8.5ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (153.3ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (55.3ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (28.6ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (18.7ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (21.1ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (47.4ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (9.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (44.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (21.5ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (153.8ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (40.8ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (22.7ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (21.4ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (95.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (40.1ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.8ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (7.5ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (3.6ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (9.4ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (90.0ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (22.6ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (20.1ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (18.7ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (74.4ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (37.3ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.6ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (18.5ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (8.9ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (7.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (143.1ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (83.3ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (18.8ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (16.1ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (19.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (37.9ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (7.4ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (6.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (161.0ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (54.8ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.7ms)[0m  SHOW TABLES
+  [1m[36mSQL (23.1ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW TABLES
+  [1m[36mSQL (19.5ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (23.5ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.8ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (110.7ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (7.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (6.7ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (2.6ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (102.5ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (40.7ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (21.8ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (75.1ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (17.1ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (63.8ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (7.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (9.5ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (6.4ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW TABLES[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations`[0m
+  [1m[35mSQL (61.6ms)[0m  DROP DATABASE IF EXISTS `feature_girl_test`
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE DATABASE `feature_girl_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (41.1ms)[0m  [1mCREATE TABLE `features` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (21.7ms)[0m  [1mCREATE TABLE `scenarios` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `definition` varchar(255), `feature_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.3ms)[0m  SHOW TABLES
+  [1m[36mSQL (29.2ms)[0m  [1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (43.5ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW KEYS FROM `schema_migrations`
+  [1m[36mSQL (45.5ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35mSQL (0.4ms)[0m  SHOW TABLES
+  [1m[36mSQL (0.4ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35mSQL (8.7ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210233207')
+  [1m[36mSQL (50.5ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110210232952')[0m
+  [1m[35mSQL (11.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110210232647')
