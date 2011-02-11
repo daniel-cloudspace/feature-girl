@@ -48,8 +48,8 @@ class Feature < ActiveRecord::Base
 
           # send block to processor
           content_block = contents[start..i]
-          puts '================================'
-          puts content_block
+          #puts '================================'
+          #puts content_block
           # The text that determines whether this is a feature or scenario could be on the first or second line
           # cannot use the standard regular expressions because they will match tags on the first line regardless
           if content_block[0].match("Feature") or content_block[1].match("Feature")
@@ -90,13 +90,13 @@ class Feature < ActiveRecord::Base
   def self.process_scenario_section(contents, feature)
     #puts "processing scenario"
     #puts contents
+    tags = []
     # if there are no tags
     if contents[0].match('Scenario:')
       title = contents[0].gsub('Scenario:', '').strip
       steps = contents[1..-1].join('\n')
     else # if there are tags
-      tags = contents[0].scan(/@[^\s@]*/).zip(feature.tag_list, ["@#{feature.title.gsub(/\s/, '_').downcase}"])
-      puts tags
+      tags.zip(contents[0].scan(/@[^\s@]*/))
       title = contents[1].gsub('Scenario:', '').strip
       steps = contents[2..-1].join('\n')
     end
@@ -106,9 +106,8 @@ class Feature < ActiveRecord::Base
     # maybe not the best idea
 
     s = Scenario.create(:title => title, :steps => steps, :feature => feature)
-    if tags
-      s.tag_list = tags
-    end
+    tags.zip(feature.tag_list, ["@#{feature.title.gsub(/\s/, '_').downcase}"])
+    s.tag_list = tags
     puts s.inspect
     s.save
   end
