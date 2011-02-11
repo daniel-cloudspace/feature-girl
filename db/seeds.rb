@@ -13,10 +13,12 @@ end
 # end
 #
 
-require File.expand_path('../spec/blueprints.rb', File.dirname(__FILE__));
-@scenario = Scenario.make
-@feature = Feature.make( :scenario => @scenario )
-@scenario.save
-@feature.save
+data_for(:features).each do |data|
+  Feature.create(:title => data['title'], :description => data['description'])
+end
 
-
+data_for(:scenarios).each do |data|
+  @scenario = Scenario.create(:title => data['title'], :steps => data['steps'], :feature => Feature.first(:conditions => {:title => data['feature']}))
+  @scenario.tag_list = data['tags']
+  @scenario.save
+end

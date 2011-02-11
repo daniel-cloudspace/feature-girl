@@ -12,3 +12,8 @@ end
 Then /^I should see the following features:$/ do |expected_features_table|
   expected_features_table.diff!(tableish('table tr', 'td,th'))
 end
+
+Then /^I should see that feature listed$/ do
+  @feature = Feature.last
+  page.should have_content(@feature.title)
+end
