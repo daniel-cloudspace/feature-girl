@@ -7,7 +7,8 @@
   - @scenarios.each do |scenario|
     .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
       = scenario.title
-      .steps
+      .steps_link{ :id => "scenario_#{scenario.id}_steps_link" }
+      .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
         = raw scenario.steps.gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>')
 .tags
   - @scenarios.collect{|s| s.tags}.flatten.uniq.each do |tag|
@@ -77,13 +78,31 @@
 
   $('#randomize').click(randomize);
 
+  //sets z index high when dragging, and below a click when done dragging
   $('.scenario_object, .tag_object').draggable({
-    drag: function(e,ui) { update_canvas(); },
+    drag: function(e,ui) { update_canvas(); $(this).css('z-index', 1000)},
     stop: function(e, ui) { 
       save_position(ui.helper);
+      $(this).css('z-index', 499);
    }
   });
 
+  //sets to high z-index but lower than dragging index
+  $('.scenario_object, .tag_object').click(function()  {
+    $(this).css('z-index', 500);
+  });
 
-
+  //hides the steps, show the step link
+  $('.steps').click(function(){
+    steps_link_div = $(this).attr('id') + '_link';
+    $(this).css('display', 'none');
+    $('#' + steps_link_div).css('display', 'block');
+  });
+  
+  //hide the link, show the steps
+  $('.steps_link').click(function(){
+    steps_div = $(this).attr('id').replace('_link', '');
+    $(this).css('display', 'none');
+    $('#' + steps_div).css('display', 'block');
+  });
 
