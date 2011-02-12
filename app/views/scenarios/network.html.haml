@@ -7,8 +7,8 @@
   - @scenarios.each do |scenario|
     .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
       = scenario.title
-      .steps
-        = raw scenario.steps.gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>')
+      -#.steps
+        = #raw scenario.steps.gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>')
 .tags
   - @scenarios.collect{|s| s.tags}.flatten.uniq.each do |tag|
     .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; border-color: #{cycle('blue','red','green')}" }
@@ -27,25 +27,38 @@
   %li= button_to 'Destroy', scenario_path(scenario),  :confirm => 'Are you sure?', :method => :delete
 
 :javascript 
+  var s = 0;
+  var s2 = 0;
+  function printtime(){ var d = new Date();
+  s2 = d.getTime() * 1000 + d.getMilliseconds();
+  console.log(s2-s);
+  s = s2;
+  }
+
+
+
   var canvas = $('#canvas')[0]
   var ctx = canvas.getContext('2d');
   var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: $('#scenario_" + s.id.to_s + "'), to: $('#tag_" + t.id.to_s + "') }" } }.join(', ') } ];
 
   function connect(scen, tag) { 
-    scen = $(scen);
-    tag = $(tag);
+    ctx.strokeStyle = tag.css('border-left-color');
     ctx.beginPath();
     ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
     ctx.lineTo(tag.offset().left + tag.width()/2, tag.offset().top + tag.height()/2);
     ctx.stroke();
   }
 
-  #{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect('#scenario_" + scenario.id.to_s + "', '#tag_" + tag.id.to_s + "');" } } }
-
   function update_canvas() {
     canvas.width = canvas.width;
-    #{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect('#scenario_" + scenario.id.to_s + "', '#tag_" + tag.id.to_s + "');" } } }
+    //#{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect($('#scenario_" + scenario.id.to_s + "'), $('#tag_" + tag.id.to_s + "'));" } } }
+    for (var i=0; i<connections.length; i++) { 
+      //if (typeof(connections[i].from) != 'undefined' && typeof(connections[i].to) != 'undefined') {
+        connect(connections[i].from, connections[i].to);
+      //}
+    }
   }
+  update_canvas();
 
   function randomize() { 
     $('.scenario_object, .tag_object').each(function() { 
@@ -70,7 +83,6 @@
                 "&" + type + "[top]=" + element.offset().top;
 
     $.post(url, post_data, function(d,t){
-      window.r = d;
       update_canvas();
     });
   }
