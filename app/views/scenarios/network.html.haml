@@ -1,7 +1,7 @@
 = stylesheet_link_tag 'network'
 
 :plain 
-  <canvas id="canvas" width="1600px" height="1400px"></canvas>
+  <canvas id="canvas" width="2600px" height="1400px"></canvas>
 
 .scenarios
   - @scenarios.each do |scenario|
@@ -9,7 +9,7 @@
       = scenario.title
 .tags
   - @scenarios.collect{|s| s.tags}.flatten.uniq.each do |tag|
-    .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px;" }
+    .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; border-color: #{cycle('blue','red','green')}" }
       = tag.name
 
 
@@ -27,6 +27,7 @@
 :javascript 
   var canvas = $('#canvas')[0]
   var ctx = canvas.getContext('2d');
+  var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: $('#scenario_" + s.id.to_s + "'), to: $('#tag_" + t.id.to_s + "') }" } }.join(', ') } ];
 
   function connect(scen, tag) { 
     scen = $(scen);

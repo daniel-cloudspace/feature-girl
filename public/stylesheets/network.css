@@ -2,10 +2,11 @@
 
 /* draggable boxes */
 .scenarios { }
-.scenario_object { display:inline-block; position:absolute; background:white; border: 1px solid; padding: 5px; margin: 5px; }
+.scenario_object { display:inline-block; position:absolute; background:white; border: 1px solid; padding: 5px; margin: 5px; text-align:center; max-width: 200px; }
 
 .tags { }
-.tag_object { display:inline-block; position:absolute; background:white;border: 1px solid; padding: 5px; margin: 5px; }
+.tag_object { display:inline-block; position:absolute; background:white;border: 3px solid; padding: 5px; margin: 5px; text-align:center; max-width: 300px; 
+  font-weight: bold; font-size: 18px;}
 
 #canvas { position:absolute; display:inline-block; top:20px; left:0; }
 

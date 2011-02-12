@@ -82,7 +82,6 @@ class Feature < ActiveRecord::Base
     if tags
       f.tag_list = tags
     end
-    puts f.inspect
     f.save
     return f
   end
@@ -96,7 +95,7 @@ class Feature < ActiveRecord::Base
       title = contents[0].gsub('Scenario:', '').strip
       steps = contents[1..-1].join('\n')
     else # if there are tags
-      tags.zip(contents[0].scan(/@[^\s@]*/))
+      tags << contents[0].scan(/@[^\s@]*/)
       title = contents[1].gsub('Scenario:', '').strip
       steps = contents[2..-1].join('\n')
     end
@@ -105,10 +104,15 @@ class Feature < ActiveRecord::Base
     # assume the feature is the most recently created feature
     # maybe not the best idea
 
-    s = Scenario.create(:title => title, :steps => steps, :feature => feature)
-    tags.zip(feature.tag_list, ["@#{feature.title.gsub(/\s/, '_').downcase}"])
-    s.tag_list = tags
-    puts s.inspect
+    s = Scenario.create(:title => title, :steps => steps, :feature_id => feature.id)
+
+    tags << feature.tag_list
+    tags << "@#{feature.title.gsub(/\s/, '_').downcase}"
+    tags.flatten!.uniq!
+    puts "Tags: " + tags.inspect
+
+    s.tag_list = tags.join ','
+    #puts s.inspect
     s.save
   end
 
