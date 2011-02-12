@@ -6,7 +6,7 @@
 .scenario_object .steps { width: 400px; text-align: left; border: 1px solid; background:silver; font-size: 75%;}
 .scenario_object .steps_link {background-color: silver; height: 5px; width:auto;}
 .tags { }
-.tag_object { display:inline-block; position:absolute; background:white;border: 3px solid; padding: 5px; margin: 5px; text-align:center; max-width: 300px; 
+.tag_object { display:inline-block; position:absolute; background:white; padding: 5px; margin: 5px; text-align:center; max-width: 300px; 
   font-weight: bold; font-size: 18px;}
 
 #canvas { position:absolute; display:inline-block; top:20px; left:0; }
