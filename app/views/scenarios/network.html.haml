@@ -30,7 +30,7 @@
 :javascript 
   var canvas = $('#canvas')[0]
   var ctx = canvas.getContext('2d');
-  var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: $('#scenario_" + s.id.to_s + "'), to: $('#tag_" + t.id.to_s + "') }" } }.join(', ') } ];
+  var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: '#scenario_" + s.id.to_s + "', to: '#tag_" + t.id.to_s + "' }" } }.join(', ') } ];
 
   function connect(scen, tag) { 
     scen = $(scen);
@@ -38,10 +38,45 @@
     ctx.beginPath();
     ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
     ctx.lineTo(tag.offset().left + tag.width()/2, tag.offset().top + tag.height()/2);
-    console.debug(tag.css('background-color'));//.css('border-color'));
     ctx.strokeStyle = tag.css('background-color');
     ctx.stroke();
   }
+
+  function colinear(start, end, point, error)  {
+    //get crossproduct
+    val =  ((end.x - start.x) * (point.y - start.y)) - ((point.x - start.x) * (end.y - start.y))
+    if(Math.abs(val) <= error)  {
+      return true;
+    }
+    return false;
+  }
+
+  function inside_bounding_box(start, end, point, error)  {
+    //if abs is slow, negate end and add the or
+    if((Math.abs(start.x - point.x) <= (end.x + error)) && (Math.abs(start.y - point.y) <= (end.y + error)))  {
+      return true;
+    }
+    return false;
+  }
+
+  $('#canvas').click(function(e)  {
+    click = { x: e.pageX, y: e.pageY }
+    console.debug(click.x + ", " + click.y);
+    $.each(connections, function(index, value)  {
+      //console.debug(value);
+      f = $(value.from);
+      //console.debug(f);
+      t = $(value.to);
+      from = { x: f.css['left'], y: f.css['top'] };
+      //console.debug(from.x)
+      to = { x: t.css['left'], y: t.css['top'] };
+      allowable_error = 3; //3 pixels
+      if(colinear(from, to, click, allowable_error) && inside_bounding_box(from, to, click, allowable_error))  {
+        //console.debug(connections[index]);
+        console.debug("found one");
+      }
+    });
+  });
 
   #{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect('#scenario_" + scenario.id.to_s + "', '#tag_" + tag.id.to_s + "');" } } }
 
@@ -109,4 +144,5 @@
     $('#' + steps_div).css('display', 'block');
     update_canvas();
   });
+
 
