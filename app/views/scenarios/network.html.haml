@@ -63,17 +63,19 @@
     click = { x: e.pageX, y: e.pageY }
     console.debug(click.x + ", " + click.y);
     $.each(connections, function(index, value)  {
-      //console.debug(value);
-      f = $(value.from);
+      console.debug(value.from + ", " + value.to);
+      f = $(value.from).offset();
       //console.debug(f);
-      t = $(value.to);
-      from = { x: f.css['left'], y: f.css['top'] };
+      t = $(value.to).offset();
+      from = { x: f.left, y: f.top };
       //console.debug(from.x)
-      to = { x: t.css['left'], y: t.css['top'] };
+      to = { x: t.left, y: t.top };
       allowable_error = 3; //3 pixels
-      if(colinear(from, to, click, allowable_error) && inside_bounding_box(from, to, click, allowable_error))  {
-        //console.debug(connections[index]);
-        console.debug("found one");
+      if(colinear(from, to, click, allowable_error))  {
+        console.debug("colinear");
+      }
+      if( inside_bounding_box(from, to, click, allowable_error))  {
+        console.debug("inside bounding box");
       }
     });
   });
