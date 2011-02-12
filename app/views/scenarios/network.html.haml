@@ -7,6 +7,8 @@
   - @scenarios.each do |scenario|
     .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
       = scenario.title
+      .steps
+        = raw scenario.steps.gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>')
 .tags
   - @scenarios.collect{|s| s.tags}.flatten.uniq.each do |tag|
     .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; border-color: #{cycle('blue','red','green')}" }
@@ -68,7 +70,7 @@
                 "&" + type + "[top]=" + element.offset().top;
 
     $.post(url, post_data, function(d,t){
-      window.r = d;console.log(d);
+      window.r = d;
       update_canvas();
     });
   }
