@@ -67,16 +67,13 @@
   }
 
   $('#canvas').click(function(e)  {
-    click = { x: e.pageX, y: e.pageY }
+    click = { x: e.pageX + $('canvas').offset().left, y: e.pageY + $('canvas').offset().top }
     console.debug(click.x + ", " + click.y);
     $.each(connections, function(index, value)  {
       console.debug(value.from + ", " + value.to);
       f = $(value.from);
-      //console.debug(f);
       t = $(value.to);
-      //ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
       from = { x: f.offset().left + f.width()/2, y: f.offset().top + f.height()/2 };
-      //console.debug(from.x)
       to = { x: t.offset().left + t.width()/2, y: t.offset().top + t.height()/2 };
       allowable_error = 3; //3 pixels
       if( inside_bounding_box(from, to, click, allowable_error))  {
