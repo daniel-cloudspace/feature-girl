@@ -45,6 +45,7 @@
   function colinear(start, end, point, error)  {
     //get crossproduct
     val =  ((end.x - start.x) * (point.y - start.y)) - ((point.x - start.x) * (end.y - start.y))
+    console.debug(val)
     if(Math.abs(val) <= error)  {
       return true;
     }
@@ -53,7 +54,13 @@
 
   function inside_bounding_box(start, end, point, error)  {
     //if abs is slow, negate end and add the or
-    if((Math.abs(start.x - point.x) <= (end.x + error)) && (Math.abs(start.y - point.y) <= (end.y + error)))  {
+    if((
+        (start.x + error >= point.x && point.x >= end.x - error) 
+        || (end.x + error >= point.x && point.x >= start.x - error)
+      ) && (
+        (start.y + error >= point.y && point.y >= end.y - error) 
+        || (end.y + error >= point.y && point.y >= start.y - error)
+      ))  {
       return true;
     }
     return false;
@@ -64,18 +71,20 @@
     console.debug(click.x + ", " + click.y);
     $.each(connections, function(index, value)  {
       console.debug(value.from + ", " + value.to);
-      f = $(value.from).offset();
+      f = $(value.from);
       //console.debug(f);
-      t = $(value.to).offset();
-      from = { x: f.left, y: f.top };
+      t = $(value.to);
+      //ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
+      from = { x: f.offset().left + f.width()/2, y: f.offset().top + f.height()/2 };
       //console.debug(from.x)
-      to = { x: t.left, y: t.top };
+      to = { x: t.offset().left + t.width()/2, y: t.offset().top + t.height()/2 };
       allowable_error = 3; //3 pixels
-      if(colinear(from, to, click, allowable_error))  {
-        console.debug("colinear");
-      }
       if( inside_bounding_box(from, to, click, allowable_error))  {
-        console.debug("inside bounding box");
+        console.debug("inside bounding box " + from.x + ":" + from.y +":"+ to.x +":"+ to.y +":"+ click.x +":"+ click.y);
+        ctx.strokeRect(from.x, from.y, to.x-from.x, to.y-from.y)
+        if(colinear(from, to, click, allowable_error))  {
+          console.debug("colinear");
+        }
       }
     });
   });
