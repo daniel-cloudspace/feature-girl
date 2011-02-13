@@ -13,7 +13,7 @@
   - @scenarios.each do |scenario|
     %tr
       %td= scenario.title
-      %td= scenario.steps
+      %td= scenario.steps.gsub('\n', '<br />').html_safe
       %td= scenario.tag_list
       %td= scenario.feature.title if !scenario.feature.nil?
       %td= link_to 'Show', scenario
