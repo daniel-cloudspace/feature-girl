@@ -7,7 +7,7 @@
   - @scenarios.each do |scenario|
     .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
       = scenario.title
-     .steps_link{ :id => "scenario_#{scenario.id}_steps_link" }
+      .steps_link{ :id => "scenario_#{scenario.id}_steps_link" }
       .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
         = raw scenario.steps.gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>')
 .tags
@@ -40,17 +40,99 @@
 
   var canvas = $('#canvas')[0]
   var ctx = canvas.getContext('2d');
-  var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: $('#scenario_" + s.id.to_s + "'), to: $('#tag_" + t.id.to_s + "') }" } }.join(', ') } ];
+  var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: '#scenario_" + s.id.to_s + "', to: '#tag_" + t.id.to_s + "' }" } }.join(', ') } ];
 
   function connect(scen, tag) { 
+    scen = $(scen);
+    tag = $(tag);
     ctx.strokeStyle = tag.css('border-left-color');
     ctx.beginPath();
     ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
     ctx.lineTo(tag.offset().left + tag.width()/2, tag.offset().top + tag.height()/2);
-    console.debug(tag.css('background-color'));//.css('border-color'));
     ctx.strokeStyle = tag.css('background-color');
     ctx.stroke();
   }
+
+  function colinear(start, end, point, error)  {
+    console.log(start, end, point);
+    //get crossproduct
+
+    // find m and b of the line for y=mx+b
+    //m = (x1-x2)/(y1-y2)
+    //b = y1 - m*x1
+    var m = (start.x - end.x)/(start.y - end.y);
+    var b = end.y - m * end.x;
+
+    // find the m and b for the line perpendicular that contains the mouse pointer
+    //b2 = y3 - m2 * x3
+    //m2 = -1/m
+    var m2 = -1/m;
+    var b2 = point.y - m2 * point.x;
+    
+    // find intersection of the real line and the perpendicular line
+    //x4 = (b2-b) / (m-m2)
+    //y4 = m2 * x4 + b2
+    var xi = (b2-b) / (m-m2);
+    var yi = m2 * xi + b2;
+    
+    // find the distance from the intersection and the mouse pointer
+    distance = Math.sqrt(Math.pow( (xi-point.x), 1 ) + Math.pow( (yi-point.y), 2 ) );
+    console.log("distance: ", distance);
+    
+    
+    
+    
+    
+    
+    val =  ((end.x - start.x) * (point.y - start.y)) - ((point.x - start.x) * (end.y - start.y))
+    console.debug("error value: ", val)
+    if(Math.abs(val) <= error)  {
+      return true;
+    }
+    return false;
+  }
+
+  function inside_bounding_box(start, end, point, error)  {
+    //if abs is slow, negate end and add the or
+    if((
+        (start.x + error >= point.x && point.x >= end.x - error) 
+        || (end.x + error >= point.x && point.x >= start.x - error)
+      ) && (
+        (start.y + error >= point.y && point.y >= end.y - error) 
+        || (end.y + error >= point.y && point.y >= start.y - error)
+      ))  {
+      return true;
+    }
+    return false;
+  }
+
+  $('#canvas').click(function(e)  {
+    click = { x: e.pageX, y: e.pageY };
+
+    console.debug(click.x + ", " + click.y);
+
+    $.each(connections, function(index, value)  {
+      //console.debug(value.from + ", " + value.to);
+      f = $(value.from);
+      //console.debug(f);
+      t = $(value.to);
+      //ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
+      from = { x: f.offset().left + f.width()/2, y: f.offset().top + f.height()/2 };
+      //console.debug(from.x)
+      to = { x: t.offset().left + t.width()/2, y: t.offset().top + t.height()/2 };
+      allowable_error = 3; //3 pixels
+      if( inside_bounding_box(from, to, click, allowable_error))  {
+        console.debug("inside bounding box " + from.x + ":" + from.y +":"+ to.x +":"+ to.y +":"+ click.x +":"+ click.y);
+        ctx.strokeRect(from.x, from.y, to.x-from.x, to.y-from.y)
+        if(colinear(from, to, click, allowable_error))  {
+          console.debug("colinear");
+          alert('colinear');
+        }
+      }
+    });
+  });
+
+  #{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect('#scenario_" + scenario.id.to_s + "', '#tag_" + tag.id.to_s + "');" } } }
 
   function update_canvas() {
     canvas.width = canvas.width;
@@ -121,4 +203,5 @@
     $('#' + steps_div).css('display', 'block');
     update_canvas();
   });
+
 
