@@ -11,8 +11,8 @@
       .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
         = raw scenario.steps.gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>').gsub(/"([^"]*)"/, '<font color=blue>"\1"</font>')
 .tags
-  - @scenarios.collect{|s| s.tags}.flatten.uniq.each do |tag|
-    .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{cycle('blue','red','green')}" }
+  - @tags.each_with_index do |tag, index|
+    .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{get_unique_color(@tags.count,index)}" }
       = tag.name
 
 
