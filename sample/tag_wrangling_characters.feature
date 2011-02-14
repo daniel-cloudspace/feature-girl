@@ -1,5 +1,4 @@
 @no-txn @tags @users @tag_wrangling
-
 Feature: Tag Wrangling - Characters
 
 Scenario: character wrangling - syns, mergers, characters, autocompletes

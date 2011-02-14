@@ -1,9 +1,7 @@
 @tags @users @tag_wrangling
-
 Feature: Tag Wrangling - Relationships
 
 Scenario: relationship wrangling - syns, mergers, characters, autocompletes
-
   Given the following activated tag wrangler exists
     | login  | password    |
     | Enigel | wrangulate! |

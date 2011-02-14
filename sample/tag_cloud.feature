@@ -1,5 +1,4 @@
 @tags
-
 Feature: Tag Cloud
   In order to browse by the most used additional tags
   As an archive user or visitor

@@ -1,5 +1,4 @@
-@works
-@no-txn
+@works @no-txn
 Feature: Work Drafts
 
   Scenario: Purging old drafts

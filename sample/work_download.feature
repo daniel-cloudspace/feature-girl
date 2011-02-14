@@ -1,7 +1,4 @@
-# encoding=utf-8
-
 @works
-
 Feature: Download a work
 
   Scenario: Download an ordinary work
