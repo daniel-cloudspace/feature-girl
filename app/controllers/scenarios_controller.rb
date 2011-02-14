@@ -89,5 +89,6 @@ class ScenariosController < ApplicationController
   # get a jquery-draggable network of scenarios and tags
   def network
     @scenarios = Scenario.all(:include => :tags)
+    @tags = @scenarios.collect{|s| s.tags}.flatten.uniq
   end
 end
