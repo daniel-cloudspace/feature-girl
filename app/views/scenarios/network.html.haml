@@ -42,45 +42,48 @@
     ctx.stroke();
   }
 
+  //use crossproduct determine if point is in the line defined by start and end
   function colinear(start, end, point, error)  {
-    //get crossproduct
     val =  ((end.x - start.x) * (point.y - start.y)) - ((point.x - start.x) * (end.y - start.y))
-    console.debug(val)
+    //console.debug(val)
     if(Math.abs(val) <= error)  {
       return true;
     }
     return false;
   }
 
+  //determine if the point is withing the start and end on a single axis
   function inside_bounding_box(start, end, point, error)  {
     //if abs is slow, negate end and add the or
-    if((
-        (start.x + error >= point.x && point.x >= end.x - error) 
-        || (end.x + error >= point.x && point.x >= start.x - error)
-      ) && (
-        (start.y + error >= point.y && point.y >= end.y - error) 
-        || (end.y + error >= point.y && point.y >= start.y - error)
-      ))  {
+    if( (start + error >= point && point >= end - error) || (end + error >= point && point >= start - error))  {
       return true;
     }
     return false;
   }
 
+  //when the canvas is clicked, determine if it is on a line
   $('#canvas').click(function(e)  {
-    click = { x: e.pageX + $('canvas').offset().left, y: e.pageY + $('canvas').offset().top }
-    console.debug(click.x + ", " + click.y);
+    //capture click, doesn't work for opera
+    click = { x: e.layerX, y: e.layerY }
+    //console.debug(click.x + ", " + click.y);
+    //loop over connections
     $.each(connections, function(index, value)  {
-      console.debug(value.from + ", " + value.to);
+      //get from and to values
       f = $(value.from);
       t = $(value.to);
       from = { x: f.offset().left + f.width()/2, y: f.offset().top + f.height()/2 };
       to = { x: t.offset().left + t.width()/2, y: t.offset().top + t.height()/2 };
-      allowable_error = 3; //3 pixels
-      if( inside_bounding_box(from, to, click, allowable_error))  {
-        console.debug("inside bounding box " + from.x + ":" + from.y +":"+ to.x +":"+ to.y +":"+ click.x +":"+ click.y);
-        ctx.strokeRect(from.x, from.y, to.x-from.x, to.y-from.y)
-        if(colinear(from, to, click, allowable_error))  {
-          console.debug("colinear");
+      //how much error we are going to allow the user
+      allowable_error = 6; // pixels
+      //check if in bounding box
+      if( inside_bounding_box(from.x, to.x, click.x, allowable_error) && inside_bounding_box(from.y, to.y, click.y, allowable_error))  {
+        //check if in line
+        if(colinear(from, to, click, allowable_error * 100))  {
+          //console.debug(value.from + ", " + value.to);
+          //console.debug("inside bounding box " + from.x + ":" + from.y +":"+ to.x +":"+ to.y +":"+ click.x +":"+ click.y);
+          //draw a bounding rectangle and alert
+          ctx.strokeRect(from.x, from.y, to.x-from.x, to.y-from.y)
+          alert("colinear");
         }
       }
     });
