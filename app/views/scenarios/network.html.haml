@@ -81,7 +81,7 @@
     
     //get crossproduct
     val =  ((end.x - start.x) * (point.y - start.y)) - ((point.x - start.x) * (end.y - start.y))
-    console.debug("error value: ", val)
+    //console.debug("error value: ", val)
     if(Math.abs(val) <= error)  {
       return true;
     }
@@ -107,23 +107,23 @@
     window.r = e;
     click = { x: e.layerX, y: e.layerY };
 
-    console.debug(click.x + ", " + click.y);
+    //console.debug(click.x + ", " + click.y);
 
     $.each(connections, function(index, value)  {
-      //console.debug(value.from + ", " + value.to);
+      ////console.debug(value.from + ", " + value.to);
       f = $(value.from);
-      //console.debug(f);
+      ////console.debug(f);
       t = $(value.to);
       //ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
       from = { x: f.offset().left + f.width()/2, y: f.offset().top + f.height()/2 };
-      //console.debug(from.x)
+      ////console.debug(from.x)
       to = { x: t.offset().left + t.width()/2, y: t.offset().top + t.height()/2 };
       allowable_error = 3; //3 pixels
       if( inside_bounding_box(from, to, click, allowable_error))  {
-        console.debug("inside bounding box " + from.x + ":" + from.y +":"+ to.x +":"+ to.y +":"+ click.x +":"+ click.y);
+        //console.debug("inside bounding box " + from.x + ":" + from.y +":"+ to.x +":"+ to.y +":"+ click.x +":"+ click.y);
         //ctx.strokeRect(from.x, from.y, to.x-from.x, to.y-from.y)
         if(colinear(from, to, click, allowable_error))  {
-          console.debug("colinear");
+          //console.debug("colinear");
           alert('colinear');
         }
       }
