@@ -56,44 +56,19 @@
   // function for calculating the distance of a point from a line with an equation of y = m*x + b
   function distance_of_point_from_line(x, y, m, b) {
     // find the m and b for the line perpendicular that contains the mouse pointer
-    // m2 = -1/m;
-    // b2 = y3 - m2 * x3;
     var m2 = -1/m;
     var b2 = y - m2 * x;
 
-    ctx.beginPath();
-    ctx.moveTo(0, b2);
-    ctx.lineTo(5000, m2*5000+b2);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(0, b);
-    ctx.lineTo(5000, m*5000+b);
-    ctx.stroke();
-
     // find intersection of the real line and the perpendicular line
-    // x4 = (b2-b) / (m-m2);
-    // y4 = m2 * x4 + b2;
-    /*(y-b)/m = x
-    (y-b2)/m2 = x
-    (y-b)/m = (y-b2)/m2
-    (y-b)*m2 = (y-b2)*m
-    y*m2 - b*m2 = y*m - b2*m
-    y*m2 - y*m = b*m2 - b2*m
-    y*(m2-m) = b*m2 - b2*m*/
-    yi = (b*m2 - b2*m)/(m2-m);
-    xi = (y-b)/m;
-    
-    //var xi = (b2-b) / (m-m2);
-    //var yi = m2 * xi + b2;
-    ctx.strokeRect(x, y, xi, yi);
+    var yi = (b*m2 - b2*m)/(m2-m);
+    var xi = (y-b)/m;
     
     // find the distance from the intersection and the mouse pointer
     return Math.sqrt(Math.pow( (xi-x), 2 ) + Math.pow( (yi-y), 2 ) );
   }
 
   function colinear(start, end, point, error)  {
-    console.log(start, end, point);
+    console.log("colinear: ", start, end, point);
 
     // find m and b of the line for y=mx+b
     //m = (x1-x2)/(y1-y2)
@@ -110,6 +85,7 @@
     if(Math.abs(val) <= error)  {
       return true;
     }
+    if (distance < 10) { return true; }
     return false;
   }
 
@@ -145,7 +121,7 @@
       allowable_error = 3; //3 pixels
       if( inside_bounding_box(from, to, click, allowable_error))  {
         console.debug("inside bounding box " + from.x + ":" + from.y +":"+ to.x +":"+ to.y +":"+ click.x +":"+ click.y);
-        ctx.strokeRect(from.x, from.y, to.x-from.x, to.y-from.y)
+        //ctx.strokeRect(from.x, from.y, to.x-from.x, to.y-from.y)
         if(colinear(from, to, click, allowable_error))  {
           console.debug("colinear");
           alert('colinear');
