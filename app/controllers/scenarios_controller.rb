@@ -107,4 +107,15 @@ class ScenariosController < ApplicationController
       end
     end
   end
+
+  def untag
+    tagging = Tagging.find_by_taggable_id_and_tag_id(params[:id], params[:tag])
+    respond_to do |format|
+      if tagging.destroy
+        format.json { render :json => { :success => true } }
+      else
+        format.json { render :json => { :success => false} }
+      end
+    end
+  end
 end

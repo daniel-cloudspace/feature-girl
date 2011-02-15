@@ -126,8 +126,13 @@
       allowable_error = 3; //3 pixels
       if( inside_bounding_box(from, to, click, allowable_error))  {
         if(colinear(from, to, click, allowable_error))  {
-          connections.splice(index,index);
-          update_canvas();
+          scen_id = value.from.replace('#scenario_', '');
+          tag_id = value.to.replace('#tag_', '');
+    
+          $.post('/scenarios/untag/' + scen_id + '/' + tag_id + '.json', '_method=put', function(d,t) {
+            connections.splice(index,index);
+            update_canvas();
+          });
         }
       }
     });

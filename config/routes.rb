@@ -9,5 +9,6 @@ FeatureGirl::Application.routes.draw do
 
   match 'network' => 'scenarios#network', :as => 'network'
   match 'scenarios/tag/:id/:tag', :to => 'scenarios#tag'
+  match 'scenarios/untag/:id/:tag/', :to => 'scenarios#untag'
   #match 'scenarios/tag', :to => 'scenarios#tag'
 end
