@@ -59,6 +59,7 @@
     scen = $(scen);
     tag = $(tag);
     ctx.strokeStyle = tag.css('border-left-color');
+    ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(scen.offset().left + scen.width()/2, scen.offset().top + scen.height()/2);
     ctx.lineTo(tag.offset().left + tag.width()/2, tag.offset().top + tag.height()/2);
