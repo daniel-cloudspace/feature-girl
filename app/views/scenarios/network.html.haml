@@ -147,9 +147,9 @@
     canvas.width = canvas.width;
     //#{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect($('#scenario_" + scenario.id.to_s + "'), $('#tag_" + tag.id.to_s + "'));" } } }
     for (var i=0; i<connections.length; i++) { 
-      //if (typeof(connections[i].from) != 'undefined' && typeof(connections[i].to) != 'undefined') {
+      if (typeof(connections[i]) != 'undefined' && typeof(connections[i].from) != 'undefined' && typeof(connections[i].to) != 'undefined') {
         connect(connections[i].from, connections[i].to);
-      //}
+      }
     }
   }
   update_canvas();
