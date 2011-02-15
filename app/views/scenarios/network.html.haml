@@ -27,7 +27,8 @@
 
 .link_bar
   = link_to 'New Scenario', new_scenario_path
-  = link_to 'Randomly Arrange Items', "#", :id => 'randomize'
+  .plain
+    <a href='#' style='display:none' id='randomize'>Randomly Arrange Items</a>
 
   
 -#%ul.features
@@ -138,8 +139,6 @@
     });
   });
 
-  #{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect('#scenario_" + scenario.id.to_s + "', '#tag_" + tag.id.to_s + "');" } } }
-
   function update_canvas() {
     canvas.width = canvas.width;
     //#{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect($('#scenario_" + scenario.id.to_s + "'), $('#tag_" + tag.id.to_s + "'));" } } }
@@ -232,6 +231,7 @@
     $.post(url, post_data, function(d,t){
       //update the connections
       //probably another post call
+      connections.push({ from: $("#scenario_" + scen_id), to: $("#tag_" + tag_id) });
       update_canvas();
     });
     $('.scenario_portal_tag').html('none');
