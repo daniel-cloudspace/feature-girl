@@ -135,7 +135,7 @@
           tag_id = value.to.replace('#tag_', '');
     
           $.post('/scenarios/untag/' + scen_id + '/' + tag_id + '.json', '_method=put', function(d,t) {
-            connections.splice(index,index);
+            connections.splice(index,1);
             update_canvas();
           });
         }
