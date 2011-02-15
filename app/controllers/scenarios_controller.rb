@@ -91,4 +91,15 @@ class ScenariosController < ApplicationController
     @scenarios = Scenario.all(:include => :tags)
     @tags = @scenarios.collect{|s| s.tags}.flatten.uniq
   end
+
+  def tag
+    @scenario = Scenario.find(params[:id]);
+    tl = @scenario.tag_list
+    tl << Tag.find_by_id(params[:tag]).name;
+    if @scenario.update_attributes(tl);
+      format.json { render :json => { :success => true } }
+    else
+      format.json { render :json => { :success => false} }
+    end
+  end
 end

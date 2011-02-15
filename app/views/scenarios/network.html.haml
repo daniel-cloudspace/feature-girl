@@ -10,10 +10,18 @@
       .steps_link{ :id => "scenario_#{scenario.id}_steps_link" }
       .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
         = raw scenario.steps.gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>').gsub(/"([^"]*)"/, '<font color=blue>"\1"</font>')
+      .scenario_portal{ :id => "scenario_portal_#{scenario.id}", :style => "display:none;" }
+        Orange Portal
+        .scenario_portal_tag{ :id => "scenario_portal_tag_#{scenario.id}", :style => "display:none;" }
+          none
+
 .tags
   - @tags.each_with_index do |tag, index|
     .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{get_unique_color(@tags.count,index)}" }
       = tag.name
+      .tag_portal{ :id => "tag_portal_#{tag.id}" }
+        Blue Portal
+
 
 
 
@@ -202,4 +210,28 @@
     update_canvas();
   });
 
+  $('.tag_portal').click(function(){
+    $('.scenario_portal').css('display', 'block');
+    $('.scenario_portal_tag').html($(this).attr('id'));
+  });
 
+  $('.scenario_portal').click(function(){
+    scen_div_id = $(this).attr('id');
+    tag_div_id = $('#' + scen_div_id.replace('scenario_portal_', 'scenario_portal_tag_')).html();
+    alert("now you are thinking with portals: " + scen_div_id  + " and " + tag_div_id);
+    scen_id = scen_div_id.replace('scenario_portal_', '');
+    tag_id = tag_div_id.replace('tag_portal_', '');
+      
+    url = '/scenarios/tag/' + scen_id + '/' + tag_id + '.json'
+    //url = '/scenarios/tag.json'
+    post_data = "_method=put";
+    //post_data = "_method=put&id=" + scen_id + "&tag=" + tag_id;
+
+    $.post(url, post_data, function(d,t){
+      alert('saved information');
+    });
+    ////////////////////////
+    $('.scenario_portal_tag').html('none');
+    $('.scenario_portal').css('display', 'none');
+
+  });
