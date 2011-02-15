@@ -16,8 +16,9 @@ Clients can better understand the development being done on their application an
 
 Runbookish Data
 ---------------
-PivotalTracker Project: https://www.pivotaltracker.com/projects/230115
-Demo Server: http://feature-girl.heroku.com/network
+PivotalTracker Project: <a href='https://www.pivotaltracker.com/projects/230115'>https://www.pivotaltracker.com/projects/230115<a/>
+
+emo Server: <a href=http://feature-girl.heroku.com/network>http://feature-girl.heroku.com/network</a>
 
 Phase 1
 -------
