@@ -1,3 +1,11 @@
+= link_to 'New Scenario', new_scenario_path
+= link_to 'Scenarios', scenarios_path
+= link_to 'Tags', tags_path
+.plain
+  <a href='#' style='display:none' id='randomize'>Randomly Arrange Items</a>
+
+ 
+
 = stylesheet_link_tag 'network'
 
 :plain 
@@ -24,15 +32,7 @@
 
 
 
-
-.link_bar
-  = link_to 'New Scenario', new_scenario_path
-  = link_to 'Scenarios', scenarios_path
-  = link_to 'Tags', tags_path
-  .plain
-    <a href='#' style='display:none' id='randomize'>Randomly Arrange Items</a>
-
-  
+ 
 -#%ul.features
   %li= link_to 'Show', scenario
   %li= link_to 'Edit', edit_scenario_path(scenario)
