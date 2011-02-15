@@ -6,6 +6,10 @@ body, p, ol, ul, td {
   line-height: 18px;
 }
 
+body { background:url('/images/grey-rising-sun.jpg'); }
+
+.links a { background-color: white; }
+
 pre {
   background-color: #eee;
   padding: 10px;

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <%= link_to "Feature-Girl Main Page", network_path %>
+  <%= link_to "Feature-Girl Main Page", network_path unless request.url =~ /\/network$/ or request.url =~ /\/$/ %>
 
 <%= yield %>
 
