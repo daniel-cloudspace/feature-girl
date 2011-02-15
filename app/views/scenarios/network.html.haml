@@ -210,27 +210,30 @@
     update_canvas();
   });
 
+  //click on the tag portal to active the scenario portal
   $('.tag_portal').click(function(){
     $('.scenario_portal').css('display', 'block');
     $('.scenario_portal_tag').html($(this).attr('id'));
   });
 
+  //click on the scenario portal to make the connection
   $('.scenario_portal').click(function(){
+    //get div information
     scen_div_id = $(this).attr('id');
     tag_div_id = $('#' + scen_div_id.replace('scenario_portal_', 'scenario_portal_tag_')).html();
     alert("now you are thinking with portals: " + scen_div_id  + " and " + tag_div_id);
     scen_id = scen_div_id.replace('scenario_portal_', '');
     tag_id = tag_div_id.replace('tag_portal_', '');
       
+    //setup post request
     url = '/scenarios/tag/' + scen_id + '/' + tag_id + '.json'
-    //url = '/scenarios/tag.json'
     post_data = "_method=put";
-    //post_data = "_method=put&id=" + scen_id + "&tag=" + tag_id;
 
     $.post(url, post_data, function(d,t){
-      alert('saved information');
+      //update the connections
+      //probably another post call
+      update_canvas();
     });
-    ////////////////////////
     $('.scenario_portal_tag').html('none');
     $('.scenario_portal').css('display', 'none');
 

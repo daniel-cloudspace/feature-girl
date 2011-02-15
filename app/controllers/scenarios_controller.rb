@@ -92,14 +92,19 @@ class ScenariosController < ApplicationController
     @tags = @scenarios.collect{|s| s.tags}.flatten.uniq
   end
 
+  # save tag to scenario by id
+  # not sure that this is the most succint way to do this
   def tag
     @scenario = Scenario.find(params[:id]);
     tl = @scenario.tag_list
     tl << Tag.find_by_id(params[:tag]).name;
-    if @scenario.update_attributes(tl);
-      format.json { render :json => { :success => true } }
-    else
-      format.json { render :json => { :success => false} }
+    @scenario.tag_list = tl
+    respond_to do |format|
+      if @scenario.update_attributes(@scenario)
+        format.json { render :json => { :success => true } }
+      else
+        format.json { render :json => { :success => false} }
+      end
     end
   end
 end

@@ -8,6 +8,6 @@ FeatureGirl::Application.routes.draw do
   resources :scenarios
 
   match 'network' => 'scenarios#network', :as => 'network'
-  match 's/tag/:id/:tag', :to => 'scenarios#tag'
+  match 'scenarios/tag/:id/:tag', :to => 'scenarios#tag'
   #match 'scenarios/tag', :to => 'scenarios#tag'
 end
