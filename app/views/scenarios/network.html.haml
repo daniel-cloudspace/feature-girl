@@ -124,6 +124,7 @@
     //console.debug(click.x + ", " + click.y);
 
     $.each(connections, function(index, value)  {
+      if (typeof(value) == 'undefined') { return; }
       f = $(value.from);
       t = $(value.to);
       from = { x: f.offset().left + f.width()/2, y: f.offset().top + f.height()/2 };
