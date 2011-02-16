@@ -10,3 +10,7 @@
   font-weight: bold; font-size: 18px;}
 
 #canvas { position:absolute; display:inline-block; top:20px; left:0; }
+
+.modify_bar { border-left: solid 1px; float:right; height: 100%; }
+
+.scenario_object .info { margin-right: 20px; }

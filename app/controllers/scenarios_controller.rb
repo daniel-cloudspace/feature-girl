@@ -80,7 +80,7 @@ class ScenariosController < ApplicationController
     @scenario.destroy
 
     respond_to do |format|
-      format.html { redirect_to(scenarios_url) }
+      format.html { redirect_to(network_url) }
       format.xml  { head :ok }
     end
   end

@@ -15,15 +15,20 @@
 .scenarios
   - @scenarios.each do |scenario|
     .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
-      = scenario.title
-      = link_to image_tag('edit.png', :width => '15px', :height => '10px'), edit_scenario_path(scenario)
-      .steps_link{ :id => "scenario_#{scenario.id}_steps_link" }
-      .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
-        = raw scenario.steps.gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>').gsub(/"([^"]*)"/, '<font color=blue>"\1"</font>')
-      .scenario_portal{ :id => "scenario_portal_#{scenario.id}", :style => "display:none;" }
-        Orange Portal
-        .scenario_portal_tag{ :id => "scenario_portal_tag_#{scenario.id}", :style => "display:none;" }
-          none
+      .modify_bar
+        .delete
+          = link_to image_tag('/images/delete.gif', :width => '10px', :height => '10px'), scenario_path(scenario), :method => :delete
+        .edit
+          = link_to image_tag('/images/edit.png', :width => '15px', :height => '10px'), edit_scenario_path(scenario)
+      .info
+        = scenario.title
+        .steps_link{ :id => "scenario_#{scenario.id}_steps_link" }
+        .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
+          = raw (h scenario.steps).gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>').gsub(/"([^"]*)"/, '<font color=blue>"\1"</font>')
+        .scenario_portal{ :id => "scenario_portal_#{scenario.id}", :style => "display:= link_to image_tag= link_to image_tagnone;" }
+          Orange Portal
+          .scenario_portal_tag{ :id => "scenario_portal_tag_#{scenario.id}", :style => "display:none;" }
+            none
 
 .tags
   - @tags.each_with_index do |tag, index|
@@ -82,20 +87,14 @@
   }
 
   function colinear(start, end, point, error)  {
-    //console.log("colinear: ", start, end, point);
-
     // find m and b of the line for y=mx+b
-    //m = (x1-x2)/(y1-y2)
-    //b = y1 - m*x1
     var m = (start.y - end.y)/(start.x - end.x);
     var b = end.y - m * end.x;
     
     var distance = distance_of_point_from_line(point.x, point.y, m, b);
-    //console.log("distance: ", distance);
     
     //get crossproduct
     val =  ((end.x - start.x) * (point.y - start.y)) - ((point.x - start.x) * (end.y - start.y))
-    //console.debug("error value: ", val)
     if(Math.abs(val) <= error)  {
       return true;
     }
@@ -242,4 +241,12 @@
     $('.scenario_portal_tag').html('none');
     $('.scenario_portal').css('display', 'none');
 
+  });
+  
+  $('delete_scenario_link').click(function() {
+    $.post(this.href, '_method=delete', function(d,t) {
+      window.location.reload(true);
+    });
+    this.href="#";
+    return false;
   });
