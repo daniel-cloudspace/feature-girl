@@ -315,3 +315,60 @@
     return false;
   });
 
+  //loop over the scenarios and move each of them
+  function move_all_scenarios_to_target()  {
+    //loop over scenarios
+    $('.scenario_object').each(function()  {
+      move_div_to_target($(this).attr('id'));
+    });
+  }
+
+  function move_scenario_to_target(id)  {
+    div = $(id);
+    self_x = div.offset().left;
+    self_y = div.offset().top;
+    //make a list of all divs and all tags except tags connected to the scenario
+    repulsors = ?
+    //make a list of tags connected to the scenario
+    attractors = ?
+    dx = 0
+    dy = 0
+
+    //repulsors
+    alpha = 1
+    $.each(repulsors, function(index, repulsor)  {
+      //this may need to calculated per div due to different div sizes
+      gamma = 0.0002
+      dx += get_path_gradient(self_x, repulsor.offset().left, alpha, gamma, dist_squared(div, repulsor))
+      dx += get_path_gradient(self_y, repulsor.offset().top, alpha, gamma, dist_squared(div, repulsor))
+    });
+
+    //attractors
+    alpha = -1
+    $.each(repulsors, function(index, value)  {
+      //this may need to calculated per div due to different div sizes
+      gamma = 0.0002
+      dx += get_path_gradient(self_x, repulsor.offset().left, alpha, gamma, dist_squared(div, attractor))
+      dx += get_path_gradient(self_y, repulsor.offset().top, alpha, gamma, dist_squared(div, attractor))
+    });
+
+    //move div to currentx + dx, currenty + dy
+    //might want to animate this
+    new_x = div.offset().left + dx;
+    new_y = div.offset().top + dy;
+    div.offset({ top: new_x, left: new_y });
+  }
+
+  //given two jquery objects, find the distance squared between them
+  function dist_squared(obj1, obj2)  {
+    //(x2 - x2)^2 + (y2 - y1)^2
+    output = Math.pow((obj2.offset().left - obj1.offset().left), 2) + Math.pow((obj2.offset().top - obj1.offset().top), 2);
+    return output
+  }
+
+  function get_path_gradient(self_x, target_x, alpha, gamma, dist_sq)  {
+    //make sure this is a float
+    output = alpha * gamma * (self_x - target_x) * Math.exp(gamma * target_x * -0.5 * dist_sq);
+    return output;
+  }
+
