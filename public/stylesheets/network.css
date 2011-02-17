@@ -14,3 +14,17 @@
 .modify_bar { border-left: solid 1px; float:right; height: 100%; }
 
 .scenario_object .info { margin-right: 20px; }
+
+.scenario_portal { float:right; margin-left: 5px; }
+.scenario_portal img { width:15px; height:30px; }
+.tag_portal { float:right; margin-left: 5px;}
+.tag_portal img { width:15px; height:30px; }
+
+.hidden_info { display:none; }
+
+.info_bar { left: -25px; top: 15px; height:720px; width:280px; background:white; border: solid 1px; position:absolute; padding: 0px 5px 5px 30px; background-color: #F3FFFF; }
+.info_bar .links { margin: 20px; text-align:center; font-size:11px; }
+.info_bar .app_info { font-style:bold; margin: 20px; text-align:center; font-size:18px; }
+.info_bar .scenario_info { }
+.info_bar .scenario_info .steps { background-color: #EEEEEE; height:100%; width:260px; text-indent:-20px; padding-left:20px; }
+.info_bar .tag_info {  }

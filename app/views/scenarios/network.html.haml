@@ -1,16 +1,32 @@
-.links
-  = link_to 'New Test', new_scenario_path
-  = link_to 'Tests', scenarios_path
-  = link_to 'Tags', tags_path
-  .plain
-    <a href='#' style='display:none' id='randomize'>Randomly Arrange Items</a>
-
- 
-
 = stylesheet_link_tag 'network'
 
 :plain 
   <canvas id="canvas" width="3600px" height="2400px"></canvas>
+
+.info_bar
+  .links
+    = link_to 'New Test', new_scenario_path
+    = link_to 'Tests', scenarios_path
+    = link_to 'Tags', tags_path
+    .plain
+      <a href='#' style='display:none' id='randomize'>Randomly Arrange Items</a>
+
+  .app_info
+    Feature-Girl
+  .scenario_info
+    .title
+      Title:
+      %span.title edit a post
+    .tags_info
+      Tags:
+      %span.tags
+        = link_to "@posts", '#'
+    .steps
+      Click on a Test or FeatureTag to view details!
+  .tag_info
+    .title
+    .description
+    .scenarios
 
 .scenarios
   - @scenarios.each do |scenario|
@@ -22,20 +38,23 @@
           = link_to image_tag('/images/edit.png', :width => '15px', :height => '10px'), edit_scenario_path(scenario)
       .info
         = scenario.title
-        .steps_link{ :id => "scenario_#{scenario.id}_steps_link" }
-        .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
-          = raw (h scenario.steps).gsub(/\\n/, '<br />').gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>').gsub(/"([^"]*)"/, '<font color=blue>"\1"</font>')
-        .scenario_portal{ :id => "scenario_portal_#{scenario.id}", :style => "display:= link_to image_tag= link_to image_tagnone;" }
-          Orange Portal
+        .scenario_portal{ :id => "scenario_portal_#{scenario.id}", :style => "display:none;" }
+          = image_tag('/images/orange_portal.jpg')
           .scenario_portal_tag{ :id => "scenario_portal_tag_#{scenario.id}", :style => "display:none;" }
             none
+      .hidden_info
+        .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
+          = raw '<p>' + (h scenario.steps).gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>').gsub(/"([^"]*)"/, '<font color=blue>"\1"</font>').split('\n').join('</p><p>') + '</p>'
+        .tags
+          - scenario.tags.each do |tag|
+            = link_to tag.name, tag_path(tag)
 
 .tags
   - @tags.each_with_index do |tag, index|
     .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{get_unique_color(@tags.count,index)}; position:absolute;" }
       = tag.name
       .tag_portal{ :id => "tag_portal_#{tag.id}" }
-        Blue Portal
+        = image_tag('/images/blue_portal.jpg')
 
 
 
@@ -120,8 +139,10 @@
     window.r = e;
     click = { x: e.layerX, y: e.layerY };
 
-    //console.debug(click.x + ", " + click.y);
+    //deactivate the Portal Themed tagging system
+    $('.scenario_portal').css('display', 'none');
 
+    // delete the lines that are within 3 pixels of the cursor
     $.each(connections, function(index, value)  {
       if (typeof(value) == 'undefined') { return; }
       f = $(value.from);
@@ -183,8 +204,15 @@
 
   $('#randomize').click(randomize);
 
+
+  function set_info_bar_content(item) {
+    $('.scenario_info .steps').html($(item).find('.steps').html());
+    $('.scenario_info .tags').html($(item).find('.tags').html());
+  }
+
   //sets z index high when dragging, and below a click when done dragging
   $('.scenario_object, .tag_object').draggable({
+    start: function(e,ui) { set_info_bar_content(this); },
     drag: function(e,ui) { update_canvas(); $(this).css('z-index', 1000)},
     stop: function(e, ui) { 
       save_position(ui.helper);
@@ -195,6 +223,7 @@
   //sets to high z-index but lower than dragging index
   $('.scenario_object, .tag_object').click(function()  {
     $(this).css('z-index', 500);
+    set_info_bar_content(this);
   });
 
   //hides the steps, show the step link
