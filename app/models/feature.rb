@@ -107,7 +107,7 @@ class Feature < ActiveRecord::Base
     s = Scenario.create(:title => title, :steps => steps, :feature_id => feature.id)
 
     tags << feature.tag_list
-    tags << "@#{feature.title.gsub(/\s/, '_').downcase}"
+    tags << "@#{feature.title.downcase}"
     tags.flatten!.uniq!
     puts "Tags: " + tags.inspect
 
