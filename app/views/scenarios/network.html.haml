@@ -1,9 +1,12 @@
 = stylesheet_link_tag 'network'
 
-:plain 
-  <canvas id="canvas" width="3600px" height="2400px"></canvas>
+<canvas id="canvas" width="3600px" height="2400px"></canvas>
 
 .info_bar
+  <a id="inline" href="#data">This shows content of element who has id="data"</a>
+
+  <div style="display:none"><div id="data">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>
+
   .links
     = link_to 'New Test', "#new_scenario", :id => "inline", :class => "new_scenario_form"
     = link_to 'Tests', scenarios_path
@@ -14,19 +17,22 @@
   .app_info
     Feature-Girl
   .scenario_info
-    .title
+    .title_info
       Title:
-      %span.title edit a post
+      %span.title
     .tags_info
       Tags:
       %span.tags
-        = link_to "@posts", '#'
     .steps
       Click on a Test or FeatureTag to view details!
   .tag_info
-    .title
+    .title_info
+      Title:
+      %span.title
     .description
     .scenarios
+      Scenarios: 
+      %span.scenarios
 
 .scenarios
   - @scenarios.each do |scenario|
@@ -43,6 +49,8 @@
           .scenario_portal_tag{ :id => "scenario_portal_tag_#{scenario.id}", :style => "display:none;" }
             none
       .hidden_info
+        .title
+          = scenario.title
         .steps{ :id => "scenario_#{scenario.id}_steps", :style => "display:none;" }
           = raw '<p>' + (h scenario.steps).gsub(/(Given|When|Then|And)/, '<font color=green>\1</font>').gsub(/"([^"]*)"/, '<font color=blue>"\1"</font>').split('\n').join('</p><p>') + '</p>'
         .tags
@@ -52,9 +60,14 @@
 .tags
   - @tags.each_with_index do |tag, index|
     .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{get_unique_color(@tags.count,index)}; position:absolute;" }
-      = tag.name
-      .tag_portal{ :id => "tag_portal_#{tag.id}" }
-        = image_tag('/images/blue_portal.jpg')
+      .info
+        = tag.name
+        .tag_portal{ :id => "tag_portal_#{tag.id}" }
+          = image_tag('/images/blue_portal.jpg')
+      .hidden_info
+        .title= tag.name
+        //.description= tag.description
+        //.scenarios= tag.scenarios.collect{|s|s.name}.join(', ')
 
 
 
@@ -210,8 +223,20 @@
 
 
   function set_info_bar_content(item) {
-    $('.scenario_info .steps').html($(item).find('.steps').html());
-    $('.scenario_info .tags').html($(item).find('.tags').html());
+    item = $(item);
+    if (item.hasClass('scenario_object')) {
+      $('.tag_info').hide();
+      $('.scenario_info').show();
+      $('.scenario_info .title').html(item.find('.title').html());
+      $('.scenario_info .steps').html(item.find('.steps').html());
+      $('.scenario_info .tags').html(item.find('.tags').html());
+    } else if (item.hasClass('tag_object')) {
+      $('.scenario_info').hide();
+      $('.tag_info').show();
+      $('.tag_info .title').html(item.find('.title'));
+      //$('.tag_info .description').html(item.find('.description'));
+      //$('.tag_info .scenarios').html(item.find('.scenarios'));
+    }
   }
 
   //sets z index high when dragging, and below a click when done dragging
