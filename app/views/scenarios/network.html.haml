@@ -320,12 +320,14 @@
   //loop over the scenarios and move each of them
   function move_all_scenarios_to_target()  {
     //loop over scenarios
-    console.log('animation started');
+    //console.log('animation started');
     $('.scenario_object').each(function()  {
       move_scenario_to_target($(this).attr('id'));
     });
     update_canvas();
-    console.log('animation ended');
+    //console.log('animation ended');
+
+    setTimeout("move_all_scenarios_to_target()", 10);
   }
 
   function move_scenario_to_target(id)  {
@@ -349,34 +351,48 @@
         gamma = 0.0002;
         dx += get_path_gradient(self_x, repulsor.offset().left, alpha, gamma, dist_squared(div, repulsor));
         dy += get_path_gradient(self_y, repulsor.offset().top, alpha, gamma, dist_squared(div, repulsor));
-        console.log("repulsor: " + dx + ", " + dy);
+        //console.log("repulsor: " + dx + ", " + dy);
       }
     });
 
     //attractors
-    alpha = -1;
+    attractor = $('#tag_1');
+    alpha = -2;
+    gamma = 0.00002;
+    dx += get_path_gradient(self_x, attractor.offset().left, alpha, gamma, dist_squared(div, attractor));
+    dy += get_path_gradient(self_y, attractor.offset().top, alpha, gamma, dist_squared(div, attractor));
     //$.each(repulsors, function(index, value)  {
-    $('.tag_object').each(function()  {
+    /*$('.tag_object').each(function()  {
       if($.inArray( { from: id, to: $(this).attr('id') }, connections))  {
         //this may need to calculated per div due to different div sizes
         attractor = $(this);
-        gamma = 0.0002;
+        gamma = 0.00002;
         dx += get_path_gradient(self_x, attractor.offset().left, alpha, gamma, dist_squared(div, attractor));
         dy += get_path_gradient(self_y, attractor.offset().top, alpha, gamma, dist_squared(div, attractor));
-        console.log("attractor: " + dx + ", " + dy);
+        //console.log("attractor: " + dx + ", " + dy);
       }
-    });
+    });*/
 
     //move div to currentx + dx, currenty + dy
     //might want to animate this
     //this probably isn't going to work
     //need to convert to a vector, normalize, then convert back to x,y coordinates
-    new_x = self_x + dx;
-    new_y = self_y + dy;
-    console.log(dx + ", " + dy);
-    div.offset({ top: new_x, left: new_y });
+    length = get_vector_length(dx, dy);
+    new_x = self_x + normalize(dx, length);
+    new_y = self_y + normalize(dy, length);
+    //console.log(dx + ", " + dy);
+    div.offset({ top: new_y, left: new_x });
   }
 
+  //gets magnitude of vector
+  function get_vector_length(x, y)  {
+    return Math.sqrt((x*x)+(y*y));
+  }
+
+  //normalizes vector component
+  function normalize(x, length)  {
+    return x/length;
+  }
   //given two jquery objects, find the distance squared between them
   function dist_squared(obj1, obj2)  {
     //(x2 - x2)^2 + (y2 - y1)^2
@@ -391,6 +407,7 @@
   }
 
   $('.animate').click(function()  {
-    move_scenario_to_target('scenario_1');
+    //move_scenario_to_target('scenario_1');
+    move_all_scenarios_to_target();
   });
 
