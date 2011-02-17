@@ -3,10 +3,6 @@
 <canvas id="canvas" width="3600px" height="2400px"></canvas>
 
 .info_bar
-  <a id="inline" href="#data">This shows content of element who has id="data"</a>
-
-  <div style="display:none"><div id="data">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>
-
   .links
     = link_to 'New Test', "#new_scenario", :id => "inline", :class => "new_scenario_form"
     = link_to 'Tests', scenarios_path
