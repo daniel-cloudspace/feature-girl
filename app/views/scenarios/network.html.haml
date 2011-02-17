@@ -7,6 +7,8 @@
     = link_to 'New Test', "#new_scenario", :id => "inline", :class => "new_scenario_form"
     = link_to 'Tests', scenarios_path
     = link_to 'Tags', tags_path
+    .animate
+      Animate
     .plain
       <a href='#' style='display:none' id='randomize'>Randomly Arrange Items</a>
 
@@ -318,44 +320,60 @@
   //loop over the scenarios and move each of them
   function move_all_scenarios_to_target()  {
     //loop over scenarios
+    console.log('animation started');
     $('.scenario_object').each(function()  {
-      move_div_to_target($(this).attr('id'));
+      move_scenario_to_target($(this).attr('id'));
     });
+    update_canvas();
+    console.log('animation ended');
   }
 
   function move_scenario_to_target(id)  {
-    div = $(id);
+    div = $('#' + id);
     self_x = div.offset().left;
     self_y = div.offset().top;
     //make a list of all divs and all tags except tags connected to the scenario
-    repulsors = ?
+    //repulsors = ?
     //make a list of tags connected to the scenario
-    attractors = ?
+    //attractors = ?
     dx = 0
     dy = 0
 
     //repulsors
-    alpha = 1
-    $.each(repulsors, function(index, repulsor)  {
-      //this may need to calculated per div due to different div sizes
-      gamma = 0.0002
-      dx += get_path_gradient(self_x, repulsor.offset().left, alpha, gamma, dist_squared(div, repulsor))
-      dx += get_path_gradient(self_y, repulsor.offset().top, alpha, gamma, dist_squared(div, repulsor))
+    alpha = 1;
+    //$.each(repulsors, function(index, repulsor)  {
+    $('.scenario_object').each(function()  {
+      if($(this).attr('id') != id)  {
+        //this may need to calculated per div due to different div sizes
+        repulsor = $(this);
+        gamma = 0.0002;
+        dx += get_path_gradient(self_x, repulsor.offset().left, alpha, gamma, dist_squared(div, repulsor));
+        dy += get_path_gradient(self_y, repulsor.offset().top, alpha, gamma, dist_squared(div, repulsor));
+        console.log("repulsor: " + dx + ", " + dy);
+      }
     });
 
     //attractors
-    alpha = -1
-    $.each(repulsors, function(index, value)  {
-      //this may need to calculated per div due to different div sizes
-      gamma = 0.0002
-      dx += get_path_gradient(self_x, repulsor.offset().left, alpha, gamma, dist_squared(div, attractor))
-      dx += get_path_gradient(self_y, repulsor.offset().top, alpha, gamma, dist_squared(div, attractor))
+    alpha = -1;
+    //$.each(repulsors, function(index, value)  {
+    $('.tag_object').each(function()  {
+      if($.inArray( { from: id, to: $(this).attr('id') }, connections))  {
+        //this may need to calculated per div due to different div sizes
+        attractor = $(this);
+        gamma = 0.0002;
+        dx += get_path_gradient(self_x, attractor.offset().left, alpha, gamma, dist_squared(div, attractor));
+        dy += get_path_gradient(self_y, attractor.offset().top, alpha, gamma, dist_squared(div, attractor));
+        console.log("attractor: " + dx + ", " + dy);
+      }
     });
 
     //move div to currentx + dx, currenty + dy
     //might want to animate this
-    new_x = div.offset().left + dx;
-    new_y = div.offset().top + dy;
+    //this probably isn't going to work
+    //need to convert to a vector, normalize, then convert back to x,y coordinates
+    new_x = self_x + dx;
+    new_y = self_y + dy;
+    console.log(dx + ", " + dy);
     div.offset({ top: new_x, left: new_y });
   }
 
@@ -371,4 +389,8 @@
     output = alpha * gamma * (self_x - target_x) * Math.exp(gamma * target_x * -0.5 * dist_sq);
     return output;
   }
+
+  $('.animate').click(function()  {
+    move_scenario_to_target('scenario_1');
+  });
 
