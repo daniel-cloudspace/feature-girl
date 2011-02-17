@@ -194,7 +194,7 @@
 
       // unblock
       currently_animating = false;
-    }
+    } else { console.log('update_canvas skipped'); }
   }
   update_canvas();
 
@@ -247,8 +247,8 @@
 
   //sets z index high when dragging, and below a click when done dragging
   $('.scenario_object, .tag_object').draggable({
-    start: function(e,ui) { set_info_bar_content(this); },
-    drag: function(e,ui) { update_canvas(); $(this).css('z-index', 1000)},
+    start: function(e,ui) { set_info_bar_content(this); $(this).css('z-index', 1000); },
+    drag: function(e,ui) { update_canvas(); },
     stop: function(e, ui) { 
       save_position(ui.helper);
       $(this).css('z-index', 499);
