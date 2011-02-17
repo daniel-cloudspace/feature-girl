@@ -14,7 +14,7 @@
 
 .scenarios
   - @scenarios.each do |scenario|
-    .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px" }
+    .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px; position: absolute;" }
       .modify_bar
         .delete
           = link_to image_tag('/images/delete.gif', :width => '10px', :height => '10px'), scenario_path(scenario), :method => :delete
@@ -32,7 +32,7 @@
 
 .tags
   - @tags.each_with_index do |tag, index|
-    .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{get_unique_color(@tags.count,index)}" }
+    .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{get_unique_color(@tags.count,index)}; position:absolute;" }
       = tag.name
       .tag_portal{ :id => "tag_portal_#{tag.id}" }
         Blue Portal
