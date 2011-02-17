@@ -88,9 +88,11 @@
 
 
 
+  // Globals
   var canvas = $('#canvas')[0]
   var ctx = canvas.getContext('2d');
   var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: '#scenario_" + s.id.to_s + "', to: '#tag_" + t.id.to_s + "' }" } }.join(', ') } ];
+  var currently_animating = false;
 
   function connect(scen, tag) { 
     scen = $(scen);
@@ -178,12 +180,20 @@
   });
 
   function update_canvas() {
-    canvas.width = canvas.width;
-    //#{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect($('#scenario_" + scenario.id.to_s + "'), $('#tag_" + tag.id.to_s + "'));" } } }
-    for (var i=0; i<connections.length; i++) { 
-      if (typeof(connections[i]) != 'undefined' && typeof(connections[i].from) != 'undefined' && typeof(connections[i].to) != 'undefined') {
-        connect(connections[i].from, connections[i].to);
+    if (!currently_animating) {
+      // block this function from running multiple times
+      currently_animating = true;
+
+      canvas.width = canvas.width;
+      //#{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect($('#scenario_" + scenario.id.to_s + "'), $('#tag_" + tag.id.to_s + "'));" } } }
+      for (var i=0; i<connections.length; i++) { 
+        if (typeof(connections[i]) != 'undefined' && typeof(connections[i].from) != 'undefined' && typeof(connections[i].to) != 'undefined') {
+          connect(connections[i].from, connections[i].to);
+        }
       }
+
+      // unblock
+      currently_animating = false;
     }
   }
   update_canvas();
