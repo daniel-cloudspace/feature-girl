@@ -5,7 +5,7 @@
 
 .info_bar
   .links
-    = link_to 'New Test', new_scenario_path
+    = link_to 'New Test', "#new_scenario", :id => "inline", :class => "new_scenario_form"
     = link_to 'Tests', scenarios_path
     = link_to 'Tags', tags_path
     .plain
@@ -57,6 +57,10 @@
         = image_tag('/images/blue_portal.jpg')
 
 
+
+.inline_content{ :style => 'display:none' }
+  .new_scenario_form
+    = render :partial => 'scenarios/form'
 
  
 -#%ul.features
@@ -279,3 +283,4 @@
     this.href="#";
     return false;
   });
+

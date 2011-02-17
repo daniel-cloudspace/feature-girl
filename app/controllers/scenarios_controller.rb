@@ -44,14 +44,16 @@ class ScenariosController < ApplicationController
   def create
     @scenario = Scenario.new(params[:scenario])
 
-    respond_to do |format|
+#    respond_to do |format|
       if @scenario.save
-        format.html { redirect_to(@scenario, :notice => 'Scenario was successfully created.') }
-        format.xml  { render :xml => @scenario, :status => :created, :location => @scenario }
+        redirect_to network_path
+#        format.html { redirect_to(@scenario, :notice => 'Scenario was successfully created.') }
+#        format.xml  { render :xml => @scenario, :status => :created, :location => @scenario }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @scenario.errors, :status => :unprocessable_entity }
-      end
+        redirect_to network_path
+#        format.html { render :action => "new" }
+#        format.xml  { render :xml => @scenario.errors, :status => :unprocessable_entity }
+#      end
     end
   end
 
@@ -88,6 +90,7 @@ class ScenariosController < ApplicationController
   # GET /network
   # get a jquery-draggable network of scenarios and tags
   def network
+    @scenario = Scenario.new
     @scenarios = Scenario.all(:include => :tags)
     @tags = @scenarios.collect{|s| s.tags}.flatten.uniq
   end
