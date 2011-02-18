@@ -218,13 +218,14 @@
       if( inside_bounding_box(from, to, click, allowable_error))  {
         if(colinear(from, to, click, allowable_error))  {
           window.y = value;
-          scen_id = value.from.id.replace('scenario_', '');
-          tag_id = value.to.id.replace('tag_', '');
+          console.log(value);
+          //scen_id = value.from.id.replace('scenario_', '');
+          //tag_id = value.to.id.replace('tag_', '');
           
-          $.post('/scenarios/untag/' + scen_id + '/' + tag_id + '.json', '_method=put', function(d,t) {
-            connections.splice(index,1);
-            update_canvas();
-          });
+          //$.post('/scenarios/untag/' + scen_id + '/' + tag_id + '.json', '_method=put', function(d,t) {
+          //  connections.splice(index,1);
+          //  update_canvas();
+          //});
         }
       }
     });
