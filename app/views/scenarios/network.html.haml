@@ -91,12 +91,9 @@
   // Globals
   var canvas = $('#canvas')[0]
   var ctx = canvas.getContext('2d');
-  var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: '#scenario_" + s.id.to_s + "', to: '#tag_" + t.id.to_s + "' }" } }.join(', ') } ];
-  var currently_animating = false;
+  var connections = [ #{@scenarios.collect { |s| s.tags.collect { |t| "{ from: $('#scenario_" + s.id.to_s + "'), to: $('#tag_" + t.id.to_s + "') }" } }.join(', ') } ];
 
   function connect(scen, tag) { 
-    scen = $(scen);
-    tag = $(tag);
     ctx.strokeStyle = tag.css('border-left-color');
     ctx.lineWidth = 3;
     ctx.beginPath();
@@ -105,6 +102,59 @@
     ctx.strokeStyle = tag.css('background-color');
     ctx.stroke();
   }
+
+  function update_canvas() {
+    canvas.width = canvas.width;
+    //#{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect($('#scenario_" + scenario.id.to_s + "'), $('#tag_" + tag.id.to_s + "'));" } } }
+    for (var i=0; i<connections.length; i++) { 
+      if (typeof(connections[i]) != 'undefined' && connections[i].from.size() > 0 && connections[i].to.size() > 0) {
+        connect(connections[i].from, connections[i].to);
+      }
+    }
+  }
+
+  //sets z index high when dragging, and below a click when done dragging
+  $('.scenario_object, .tag_object').draggable({
+    start: function(e,ui) { set_info_bar_content(this); $(this).css('z-index', 1000); },
+    drag: function(e,ui) { update_canvas(); },
+    stop: function(e, ui) { 
+      save_position(ui.helper);
+      $(this).css('z-index', 499);
+   }
+  });
+
+  update_canvas();
+
+
+  function randomize() { 
+    $('.scenario_object, .tag_object').each(function() { 
+      $(this).css('left', Math.random()*1024); $(this).css('top', Math.random()*768); 
+      save_position($(this));
+    });
+    update_canvas();
+    return false;
+  }
+  
+  function save_position(element) {
+    var url = '', post_data = '', type = '', id = ''
+
+    // determine which type of element we are dragging
+    type = element.attr('class').match(/([^ ]+)_object/)[1];
+
+    id = element.attr('id').replace(type+'_', '');
+      
+    url = '/' + type + 's/' + id + '.json';
+    post_data = "_method=put" +
+                "&" + type + "[left]=" + element.offset().left +
+                "&" + type + "[top]=" + element.offset().top;
+
+    $.post(url, post_data, function(d,t){
+      update_canvas();
+    });
+  }
+
+  $('#randomize').click(randomize);
+
 
   // function for calculating the distance of a point from a line with an equation of y = m*x + b
   function distance_of_point_from_line(x, y, m, b) {
@@ -160,8 +210,8 @@
     // delete the lines that are within 3 pixels of the cursor
     $.each(connections, function(index, value)  {
       if (typeof(value) == 'undefined') { return; }
-      f = $(value.from);
-      t = $(value.to);
+      f = value.from;
+      t = value.to;
       from = { x: f.offset().left + f.width()/2, y: f.offset().top + f.height()/2 };
       to = { x: t.offset().left + t.width()/2, y: t.offset().top + t.height()/2 };
       allowable_error = 3; //3 pixels
@@ -179,55 +229,6 @@
     });
   });
 
-  function update_canvas() {
-    if (!currently_animating) {
-      // block this function from running multiple times
-      currently_animating = true;
-
-      canvas.width = canvas.width;
-      //#{@scenarios.collect { |scenario| scenario.tags.collect { |tag| "connect($('#scenario_" + scenario.id.to_s + "'), $('#tag_" + tag.id.to_s + "'));" } } }
-      for (var i=0; i<connections.length; i++) { 
-        if (typeof(connections[i]) != 'undefined' && typeof(connections[i].from) != 'undefined' && typeof(connections[i].to) != 'undefined') {
-          connect(connections[i].from, connections[i].to);
-        }
-      }
-
-      // unblock
-      currently_animating = false;
-    }
-  }
-  update_canvas();
-
-  function randomize() { 
-    $('.scenario_object, .tag_object').each(function() { 
-      $(this).css('left', Math.random()*1024); $(this).css('top', Math.random()*768); 
-      save_position($(this));
-    });
-    update_canvas();
-    return false;
-  }
-  
-  function save_position(element) {
-    var url = '', post_data = '', type = '', id = ''
-
-    // determine which type of element we are dragging
-    type = element.attr('class').match(/([^ ]+)_object/)[1];
-
-    id = element.attr('id').replace(type+'_', '');
-      
-    url = '/' + type + 's/' + id + '.json';
-    post_data = "_method=put" +
-                "&" + type + "[left]=" + element.offset().left +
-                "&" + type + "[top]=" + element.offset().top;
-
-    $.post(url, post_data, function(d,t){
-      update_canvas();
-    });
-  }
-
-  $('#randomize').click(randomize);
-
-
   function set_info_bar_content(item) {
     item = $(item);
     if (item.hasClass('scenario_object')) {
@@ -244,16 +245,6 @@
       //$('.tag_info .scenarios').html(item.find('.scenarios'));
     }
   }
-
-  //sets z index high when dragging, and below a click when done dragging
-  $('.scenario_object, .tag_object').draggable({
-    start: function(e,ui) { set_info_bar_content(this); },
-    drag: function(e,ui) { update_canvas(); $(this).css('z-index', 1000)},
-    stop: function(e, ui) { 
-      save_position(ui.helper);
-      $(this).css('z-index', 499);
-   }
-  });
 
   //sets to high z-index but lower than dragging index
   $('.scenario_object, .tag_object').click(function()  {
