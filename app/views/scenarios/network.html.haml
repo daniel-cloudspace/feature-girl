@@ -217,9 +217,9 @@
       allowable_error = 3; //3 pixels
       if( inside_bounding_box(from, to, click, allowable_error))  {
         if(colinear(from, to, click, allowable_error))  {
-          scen_id = value.from.id.replace('scenario_', '');
-          tag_id = value.to.id.replace('tag_', '');
-    
+          scen_id = value.from.attr('id').replace('scenario_', '');
+          tag_id = value.to.attr('id').replace('tag_', '');
+          
           $.post('/scenarios/untag/' + scen_id + '/' + tag_id + '.json', '_method=put', function(d,t) {
             connections.splice(index,1);
             update_canvas();
