@@ -22,7 +22,7 @@
 
 .hidden_info { display:none; }
 
-.info_bar { left: -25px; top: 15px; height:720px; width:280px; background:white; border: solid 1px; position:absolute; padding: 0px 5px 5px 30px; background-color: #F3FFFF; }
+.info_bar { left: -25px; top: 15px; width:280px; background:white; border: solid 1px; position:absolute; padding: 0px 5px 5px 30px; background-color: #F3FFFF; }
 .info_bar .links { margin: 20px; text-align:center; font-size:11px; }
 .info_bar .app_info { font-style:bold; margin: 20px; text-align:center; font-size:18px; }
 .info_bar .scenario_info { }
