@@ -320,30 +320,24 @@
   //loop over the scenarios and move each of them
   function move_all_scenarios_to_target()  {
     //loop over scenarios
-    //console.log('animation started');
     $('.scenario_object').each(function()  {
       move_scenario_to_target($(this).attr('id'));
     });
     update_canvas();
-    //console.log('animation ended');
-
+    //10 fps or less
     setTimeout("move_all_scenarios_to_target()", 10);
   }
 
   function move_scenario_to_target(id)  {
+    console.log('self: ' + id);
     div = $('#' + id);
     self_x = div.offset().left;
     self_y = div.offset().top;
-    //make a list of all divs and all tags except tags connected to the scenario
-    //repulsors = ?
-    //make a list of tags connected to the scenario
-    //attractors = ?
-    dx = 0
-    dy = 0
+    dx = 0;
+    dy = 0;
 
-    //repulsors
+    //other scenarios are repulsors
     alpha = 1;
-    //$.each(repulsors, function(index, repulsor)  {
     $('.scenario_object').each(function()  {
       if($(this).attr('id') != id)  {
         //this may need to calculated per div due to different div sizes
@@ -351,35 +345,34 @@
         gamma = 0.0002;
         dx += get_path_gradient(self_x, repulsor.offset().left, alpha, gamma, dist_squared(div, repulsor));
         dy += get_path_gradient(self_y, repulsor.offset().top, alpha, gamma, dist_squared(div, repulsor));
-        //console.log("repulsor: " + dx + ", " + dy);
       }
     });
 
-    //attractors
-    attractor = $('#tag_1');
-    alpha = -2;
-    gamma = 0.00002;
-    dx += get_path_gradient(self_x, attractor.offset().left, alpha, gamma, dist_squared(div, attractor));
-    dy += get_path_gradient(self_y, attractor.offset().top, alpha, gamma, dist_squared(div, attractor));
-    //$.each(repulsors, function(index, value)  {
-    /*$('.tag_object').each(function()  {
-      if($.inArray( { from: id, to: $(this).attr('id') }, connections))  {
+    //tags are global attractors or local repulsors depending on whether they are connected to the scenario
+    $.each(connections, function(index, value)  {
+      //global attractor
+      if(('#' + id) == value.from)  {
         //this may need to calculated per div due to different div sizes
-        attractor = $(this);
-        gamma = 0.00002;
+        attractor = $(value.to);
+        gamma = 0.000001;
+        alpha = -1.5;
         dx += get_path_gradient(self_x, attractor.offset().left, alpha, gamma, dist_squared(div, attractor));
         dy += get_path_gradient(self_y, attractor.offset().top, alpha, gamma, dist_squared(div, attractor));
-        //console.log("attractor: " + dx + ", " + dy);
+      } else { //local repulsor
+        repulsor = $(value.to);
+        gamma = 0.00002;
+        alpha = 1;
+        dx += get_path_gradient(self_x, repulsor.offset().left, alpha, gamma, dist_squared(div, repulsor));
+        dy += get_path_gradient(self_y, repulsor.offset().top, alpha, gamma, dist_squared(div, repulsor));
       }
-    });*/
+        
+    });
 
     //move div to currentx + dx, currenty + dy
-    //might want to animate this
-    //this probably isn't going to work
-    //need to convert to a vector, normalize, then convert back to x,y coordinates
     length = get_vector_length(dx, dy);
-    new_x = self_x + normalize(dx, length);
-    new_y = self_y + normalize(dy, length);
+    //add bounding for top and left side of screen
+    new_x = Math.max(self_x + normalize(dx, length), 0);
+    new_y = Math.max(self_y + normalize(dy, length), 0);
     //console.log(dx + ", " + dy);
     div.offset({ top: new_y, left: new_x });
   }
