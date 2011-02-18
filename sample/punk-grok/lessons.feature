@@ -1,6 +1,4 @@
-# lessons.feature
-
-Feature:
+Feature: Lessons
   In order to instruct students
   As an instructor
   I want to manage lessons

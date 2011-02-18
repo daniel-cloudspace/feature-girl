@@ -1,8 +1,3 @@
-# user_groups.feature
-
-### Ticket #9 involves user_groups, however I've been told to hold off on coding, as this may
-### not be actually used in production
-
 Feature: User Groups
   As a user or administrator of Punk-Grok
   I want to be able to manage users into groups

@@ -1,6 +1,4 @@
-# users.feature
-
-Feature:
+Feature: Users
   In order to learn more
   As a user
   I want to manage my account

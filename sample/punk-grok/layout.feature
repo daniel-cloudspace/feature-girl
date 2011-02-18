@@ -1,6 +1,4 @@
-#layout.feature
-
-Feature:
+Feature: Layout
   In order to ensure usability
   As an administrator
   I want to have a pleasant website

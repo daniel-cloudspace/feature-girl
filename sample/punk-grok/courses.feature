@@ -1,6 +1,4 @@
-# courses.feature
-
-Feature:
+Feature: Courses
   In order to instruct students
   As an instructor
   I want to manage courses
