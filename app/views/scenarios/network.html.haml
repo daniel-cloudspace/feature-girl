@@ -219,7 +219,6 @@
         if(colinear(from, to, click, allowable_error))  {
           scen_id = value.from.id.replace('scenario_', '');
           tag_id = value.to.id.replace('tag_', '');
-	  window.r = value;
     
           $.post('/scenarios/untag/' + scen_id + '/' + tag_id + '.json', '_method=put', function(d,t) {
             connections.splice(index,1);
