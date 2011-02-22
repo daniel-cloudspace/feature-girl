@@ -306,3 +306,25 @@
     return false;
   });
 
+
+
+
+
+
+
+  // canvas drawing helpers
+  function drawRoundedRect(x, y, w, h) {
+    var x2 = x+w;
+    var y2 = y+h;
+    ctx.beginPath();
+    ctx.moveTo(x+c, y);
+    ctx.lineTo(x2-c, y);
+    ctx.quadraticCurveTo(x2,y, x2,y+c);
+    ctx.lineTo(x2, y2-c);
+    ctx.quadraticCurveTo(x2,y2, x2-c,y2);
+    ctx.lineTo(x+c, y2);
+    ctx.quadraticCurveTo(x,y2, x,y2-c);
+    ctx.lineTo(x, y+c);
+    ctx.quadraticCurveTo(x,y, x+c,y);
+    ctx.stroke();
+  }
