@@ -35,7 +35,7 @@ border-radius: 2px;
 top: 25px; 
 width:280px; 
 background:#545454; 
-position:absolute; 
+position:fixed;
 color:white;
 font-family: 'Times New Roman';
 max-width: 240px;
