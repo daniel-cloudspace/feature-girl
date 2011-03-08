@@ -35,10 +35,10 @@
   - @scenarios.each do |scenario|
     .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px; position: absolute;" }
       .modify_bar
-        /.delete
-        /  = link_to image_tag('/images/delete.gif', :width => '10px', :height => '10px'), scenario_path(scenario), :method => :delete
-        /.edit
-        /  = link_to image_tag('/images/edit.png', :width => '15px', :height => '10px'), edit_scenario_path(scenario)
+        .delete
+          = link_to image_tag('/images/delete.gif', :width => '10px', :height => '10px'), scenario_path(scenario), :method => :delete
+        .edit
+          = link_to image_tag('/images/edit.png', :width => '15px', :height => '10px'), edit_scenario_path(scenario)
       .info
         = scenario.title
         .scenario_portal{ :id => "scenario_portal_#{scenario.id}", :style => "display:none;" }
