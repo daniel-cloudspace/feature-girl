@@ -60,8 +60,8 @@
     .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{get_unique_color(@tags.count,index)}; position:absolute;" }
       .info
         = tag.name
-        .tag_portal{ :id => "tag_portal_#{tag.id}" }
-          = image_tag('/images/blue_portal.jpg')
+      .tag_portal{ :id => "tag_portal_#{tag.id}" }
+        = image_tag('/images/blue_portal.jpg')
       .hidden_info
         .title= tag.name
         //.description= tag.description
