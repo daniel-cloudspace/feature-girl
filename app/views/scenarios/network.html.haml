@@ -41,7 +41,7 @@
         .edit
           = link_to image_tag('/images/edit.png', :width => '15px', :height => '10px'), edit_scenario_path(scenario)
       .scenario_portal{ :id => "scenario_portal_#{scenario.id}" }
-        = image_tag('/images/orange_portal.jpg')
+        = image_tag('/images/orange_portal.png')
         .scenario_portal_tag{ :id => "scenario_portal_tag_#{scenario.id}", :style => 'display:none' }
       .info
         = scenario.title
@@ -60,7 +60,7 @@
   - @tags.each_with_index do |tag, index|
     .tag_object{ :id => "tag_#{tag.id}", :style => "left: #{tag.left}px; top: #{tag.top}px; background-color: #{get_unique_color(@tags.count,index)}; position:absolute;" }
       .tag_portal{ :id => "tag_portal_#{tag.id}" }
-        = image_tag('/images/blue_portal.jpg')
+        = image_tag('/images/blue_portal.png')
       .info
         = tag.name
       .hidden_info
