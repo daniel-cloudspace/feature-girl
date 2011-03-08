@@ -64,5 +64,5 @@ background: -webkit-gradient(linear, left top, left bottom, from(#3F4448), to(#0
 .info_bar .scenario_info .steps { max-height:500px; overflow:auto; }
 .info_bar .tag_info {  }
 
-.links { height:20px;text-align:center; font-size:11px; background: #54545450; position:fixed; width:100%; }
+.links { height:20px;text-align:center; font-size:11px; background: #54545450; position:fixed; width:100%;background:rgba(54,54,54,0.5); z-index:100;}
 .links a { margin-left: 5px; float:right; background:none; color:white; }
