@@ -31,7 +31,7 @@ border-radius: 5px;
 .hidden_info { display:none; }
 
 .info_bar { 
-top: 25px; 
+top: 75px; 
 width:280px; 
 background:#545454; 
 position:fixed;
@@ -40,6 +40,7 @@ font-family: 'Times New Roman';
 max-width: 240px;
 -moz-border-radius: 7px;
 border-radius: 7px;
+left:20px;
 }
 
 .info_bar a { color: white; }
@@ -57,9 +58,11 @@ background: -webkit-gradient(linear, left top, left bottom, from(#3F4448), to(#0
 .info_bar .title_info { font-size: 17px; padding: 5px;}
 .info_bar .tags_info { padding: 5px; }
 .info_bar .cycle { background:#343434; }
-.info_bar .links { text-align:center; font-size:11px; }
 .info_bar .app_info { font-style:bold; margin: 20px; text-align:center; font-size:18px; }
 .info_bar .title_info { }
 .info_bar .scenario_info { }
 .info_bar .scenario_info .steps { max-height:500px; overflow:auto; }
 .info_bar .tag_info {  }
+
+.links { height:20px;text-align:center; font-size:11px; background: #54545450; position:fixed; width:100%; }
+.links a { margin-left: 5px; float:right; background:none; color:white; }
