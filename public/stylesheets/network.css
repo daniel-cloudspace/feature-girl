@@ -17,12 +17,11 @@ background: #545454;
 -moz-border-radius: 5px;
 border-radius: 5px;
 }
+.tag_object .info { margin-right:20px; }
 
 #canvas { position:absolute; display:inline-block; top:20px; left:0; }
 
 .modify_bar { border-left: solid 1px; float:right; height: 100%; }
-
-.scenario_object .info { margin-right: 20px; }
 
 .scenario_portal { float:right; }
 .scenario_portal img { width:15px; height:30px; }
