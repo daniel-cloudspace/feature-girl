@@ -12,7 +12,7 @@ border-radius: 5px;
 .scenario_object .steps_link {background-color: silver; height: 5px; width:auto;}
 .tags { }
 .tag_object { display:inline-block; position:absolute; padding: 5px; margin: 5px; text-align:center; max-width: 300px; 
-  font-weight: bold; font-size: 18px;
+font-weight: bold; font-size: 18px;
 background: #545454; 
 -moz-border-radius: 5px;
 border-radius: 5px;
@@ -31,7 +31,7 @@ border-radius: 5px;
 .hidden_info { display:none; }
 
 .info_bar { 
-top: 75px; 
+top: 50px; 
 width:280px; 
 background:#545454; 
 position:fixed;
@@ -64,5 +64,10 @@ background: -webkit-gradient(linear, left top, left bottom, from(#3F4448), to(#0
 .info_bar .scenario_info .steps { max-height:500px; overflow:auto; }
 .info_bar .tag_info {  }
 
-.links { height:20px;text-align:center; font-size:11px; background: #54545450; position:fixed; width:100%;background:rgba(54,54,54,0.5); z-index:100;}
-.links a { margin-left: 5px; float:right; background:none; color:white; }
+.links { height:20px;text-align:center; font-size:11px; background: #54545450; position:fixed; width:100%;background:rgba(0,0,0,0.8); z-index:100;margin-top:-8px; margin-left:-8px;
+-moz-box-shadow: 3px 3px 4px #000;
+-webkit-box-shadow: 3px 3px 4px #000;
+box-shadow: 3px 3px 4px #000;
+}
+.links a { margin-left: 5px; float:right; background:none; color:white; text-decoration:none;}
+.links a.feature-girl { float:left; }
