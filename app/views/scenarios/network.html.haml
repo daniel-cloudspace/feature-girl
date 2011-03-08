@@ -40,10 +40,10 @@
         .edit
           = link_to image_tag('/images/edit.png', :width => '15px', :height => '10px'), edit_scenario_path(scenario)
       .scenario_portal_tag{ :id => "scenario_portal_tag_#{scenario.id}" }
-      .info
-        = scenario.title
         .scenario_portal{ :id => "scenario_portal_#{scenario.id}" }
           = image_tag('/images/orange_portal.jpg')
+      .info
+        = scenario.title
              
       .hidden_info
         .title
