@@ -41,6 +41,7 @@ max-width: 240px;
 -moz-border-radius: 7px;
 border-radius: 7px;
 left:20px;
+z-index:100;
 }
 
 .info_bar a { color: white; }
