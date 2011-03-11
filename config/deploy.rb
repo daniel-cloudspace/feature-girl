@@ -1,6 +1,11 @@
-set :application, "feature-girl"
+set :stages, %w(staging production)
+require 'capistrano/ext/multistage' 
+set :default_stage, 'staging'
+
 set :repository,  "git@github.com:daniel-cloudspace/feature-girl.git"
 set :scm, :git
+
+
 set :branch, "capistrano" #currently working off of the capistrano branch because I don't want to mess with master
 
 set :deploy_to, "/vol/www/#{application}"
