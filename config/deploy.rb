@@ -15,6 +15,7 @@ set :deploy_via, :remote_cache
 set :rails_env, "production"
 set :use_sudo, false
 set :ssh_options, {:forward_agent => true, :user => "root" }
+default_run_options[:pty] = true
 
 role :web, "local.feature-girl.com"                          # Your HTTP server, Apache/etc
 role :app, "local.feature-girl.com"                          # This may be the same as your `Web` server
@@ -36,7 +37,7 @@ namespace :bundler do
   task :bundle_new_release do
     #bundler.create_symlink
     #bundler.install
-    run "cd #{release_path} && bundle isntall"
+    run "cd #{release_path} && bundle install"
   end
 end
 
