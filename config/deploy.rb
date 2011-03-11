@@ -40,4 +40,4 @@ namespace :bundler do
   end
 end
 
-after "deploy", "bundler.bundle_new_release"
+after "deploy", "bundler:bundle_new_release"
