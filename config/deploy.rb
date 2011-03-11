@@ -13,8 +13,7 @@ set :branch, "capistrano" #currently working off of the capistrano branch becaus
 set :deploy_to, "/vol/www/#{application}"
 set :deploy_via, :remote_cache
 set :rails_env, "production"
-#set :ssh_options, {:user => "vagrant" }
-ssh_options[:keys] = `vagrant ssh_config | grep IdentityFile`.split.last
+set :ssh_options, {:forward_agent => true, :user => "vagrant" }
 
 role :web, "local.feature-girl.com"                          # Your HTTP server, Apache/etc
 role :app, "local.feature-girl.com"                          # This may be the same as your `Web` server
