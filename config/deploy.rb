@@ -16,6 +16,7 @@ set :rails_env, "production"
 set :use_sudo, false
 set :ssh_options, {:forward_agent => true, :user => "root" }
 default_run_options[:pty] = true
+set :keep_releases, 5
 
 role :web, "local.feature-girl.com"                          # Your HTTP server, Apache/etc
 role :app, "local.feature-girl.com"                          # This may be the same as your `Web` server
@@ -41,4 +42,8 @@ namespace :bundler do
   end
 end
 
-after "deploy", "bundler:bundle_new_release"
+after :deploy do
+  bundler:bundle_new_release
+  deploy:cleanup
+  #run "ln -s /srv/#{application}/shared /srv/#{application}/current/public/shared"
+end
