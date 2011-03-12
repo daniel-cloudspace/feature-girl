@@ -72,3 +72,38 @@ box-shadow: 3px 3px 4px #000;
 }
 .links a { margin-left: 5px; float:right; background:none; color:white; text-decoration:none;}
 .links a.feature-girl { float:left; }
+
+.new_scenario_bar { 
+top: 50px; 
+width:280px; 
+background:#545454; 
+position:fixed;
+color:white;
+font-family: 'Times New Roman';
+max-width: 240px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+left:320px;
+z-index:501;
+}
+
+.new_scenario_bar .field label {
+  padding: 5px;
+}
+.new_scenario_bar .field textarea {
+  width:234px;
+}
+.new_scenario_bar .field #scenario_steps  {
+  height: 200px;
+}
+.new_scenario_bar .field #scenario_tag_list {
+  height: 100px;
+}
+
+.new_scenario_bar .field { 
+  font-size: 17px; 
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: -moz-linear-gradient(top,  #3F4448,  #000000);
+  background: -webkit-gradient(linear, left top, left bottom, from(#3F4448), to(#000000));
+}

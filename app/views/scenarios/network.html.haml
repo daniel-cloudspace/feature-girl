@@ -34,6 +34,14 @@
       Scenarios: 
       %span.scenarios
 
+.new_scenario_bar
+  .field
+    %div.text
+      Create New Scenario
+    %div.new_scenario_bar_hide
+      Hide
+  = render "form" 
+
 .scenarios
   - @scenarios.each do |scenario|
     .scenario_object{ :id => "scenario_#{scenario.id}", :style => "left: #{scenario.left}px; top: #{scenario.top}px; position: absolute;" }
